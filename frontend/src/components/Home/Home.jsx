@@ -3,7 +3,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import LogoutButton from './LogoutButton'; // Import the LogoutButton component
+import LogoutButton from '../LogoutButton/LogoutButton'; // Import the LogoutButton component
 
 const Home = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
@@ -15,7 +15,7 @@ const Home = () => {
 
   return (
     <div>
-      <h2>Home</h2>
+      <h2 className='text-3xl font-bold'>Home</h2>
       {isAuthenticated ? (
         <div>
           <p>Welcome to the home page!</p>

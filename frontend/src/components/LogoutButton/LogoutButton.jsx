@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { clearUser } from '../features/authSlice';
+import { clearUser } from '../../features/authSlice';
 import axios from 'axios';
 
 const LogoutButton = () => {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { setUser } from '../features/authSlice';
+import { setUser } from '../../features/authSlice';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 import axios from 'axios';
@@ -34,17 +34,17 @@ const Login = () => {
 
   return (
     <div>
-      <h2>Login</h2>
+      <h2 className='text-3xl font-bold'>Login</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label>Email:</label>
-          <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+          <input className="border-2 border-rose-600" type="email" name="email" value={formData.email} onChange={handleChange} required />
         </div>
         <div>
           <label>Password:</label>
-          <input type="password" name="password" value={formData.password} onChange={handleChange} required />
+          <input className="border-2 border-rose-600" type="password" name="password" value={formData.password} onChange={handleChange} required />
         </div>
-        <button type="submit">Login</button>
+        <button className='border-solid border-2 border-color:rgb(0 0 0)' type="submit">Login</button>
       </form>
     </div>
   );
