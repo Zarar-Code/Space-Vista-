@@ -28,4 +28,6 @@ router.route("/refresh-token").post(refreshAccessToken)
 router.route("/allUsers").get(allUser)
 
 
+
+
 export default router;

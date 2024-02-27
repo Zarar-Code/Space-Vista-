@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import {Register, Login, Home, AdminPanel} from "./components";
+import {Register, UserLogin, AdminLogin,  Home, AdminPanel, AdminRegister} from "./components";
 import { Provider } from "react-redux";
 import { store } from "./store";
 import { setUser } from "./features/authSlice";
@@ -24,8 +24,10 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/admin" element={<AdminPanel />} />
+          <Route path="/admin/register" element={<AdminRegister />} />
+          <Route path="/login" element={<UserLogin />} />
+          <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/adminpanel" element={<AdminPanel />} />
         </Routes>
       </Router>
     </Provider>

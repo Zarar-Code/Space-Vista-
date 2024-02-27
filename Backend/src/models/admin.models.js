@@ -2,47 +2,33 @@ import mongoose, { Schema } from "mongoose";
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
 
-const userSchema = new Schema(
-  {
+const adminSchema = new Schema({
     username: {
+        type: String,
+        required: true,
+        lowercase: true,
+        trim: true,
+        index: true,
+      },
+      email: {
+        type: String,
+        required: true,
+        unique: true,
+        lowercase: true,
+        trim: true,
+      },
+      fullName: {
       type: String,
       required: true,
-      lowercase: true,
       trim: true,
-      index: true,
-    },
-    email: {
-      type: String,
-      required: true,
-      unique: true,
-      lowercase: true,
-      trim: true,
-    },
-    fullName: {
-    type: String,
-    required: true,
-    trim: true,
-    },
-    // avatar: {
-    //   type: String,
-    //   required: true,
-    // },
-    // coverImage: {
-    //   type: String,
-    // },
-    // watchHistory: [
-    // {
-    //     type: Schema.Types.ObjectId,
-    //     ref:"Video"
-    // },
-    // ],
-    password:{
+      },
+      password:{
         type: String,
         required: [true , "Password is required"]
     },
     role: {
         type: String,
-        default: 'user',
+        default: 'admin',
       },
     refreshToken:{
         type: String,
@@ -51,18 +37,18 @@ const userSchema = new Schema(
   {
     timestamps: true
   }
-);
+)
 
-userSchema.pre("save", async function(next){
+adminSchema.pre("save", async function(next){
     if(!this.isModified("password")) return next()
     this.password = await bcrypt.hash(this.password, 10);
     next()
 })
 
-userSchema.methods.isPasswordCorrect = async function (password){
+adminSchema.methods.isPasswordCorrect = async function (password){
     return await bcrypt.compare(password, this.password)
 }
-userSchema.methods.generateAccessToken = function (){
+adminSchema.methods.generateAccessToken = function (){
    return jwt.sign(
         {
             _id: this._id,
@@ -75,7 +61,7 @@ userSchema.methods.generateAccessToken = function (){
         }
     )
 }
-userSchema.methods.generateRefreshToken = function (){
+adminSchema.methods.generateRefreshToken = function (){
     return jwt.sign(
         {
             _id: this._id,
@@ -86,4 +72,4 @@ userSchema.methods.generateRefreshToken = function (){
     )
 }
 
-export const User = mongoose.model("User", userSchema);
+export const Admin = mongoose.model("Admin", adminSchema);

@@ -248,36 +248,5 @@ const allUser = asyncHandlder(async (req, res)=>{
   res.json(allUsers)
 })
 
-// const jokesie = asyncHandlder( async (req, res) => {
-//   const jokes = [
-//     {
-//       id: 1,
-//       title: "First Jokes",
-//       content: "This is the first jokes",
-//     },
-//     {
-//       id: 2,
-//       title: "Second Jokes!!!",
-//       content: "This is the second jokes",
-//     },
-//     {
-//       id: 3,
-//       title: "Third Jokes",
-//       content: "This is the Third jokes",
-//     },
-//     {
-//       id: 4,
-//       title: "Fourth Jokes",
-//       content: "This is the Fourth jokes",
-//     },
-//     {
-//       id: 5,
-//       title: "Fifth Jokes",
-//       content: "This is the Fifth jokes",
-//     },
-//   ];
-//   res.send(jokes);
-// });
-
 
 export { userRegister, userLogin, userLogout, refreshAccessToken, allUser };

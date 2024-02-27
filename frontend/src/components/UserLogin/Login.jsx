@@ -22,11 +22,8 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await axios.post('/api/v1/users/login', formData);
-
-      localStorage.setItem('token', response.data.data.accessToken);
-
-      dispatch(setUser(response.data.user));
-      navigate('/'); // Navigate to home page after successful login
+        dispatch(setUser(response.data.user));
+        navigate('/'); // Redirect to home page for regular users
     } catch (error) {
       console.error('Login Error:', error);
     }
