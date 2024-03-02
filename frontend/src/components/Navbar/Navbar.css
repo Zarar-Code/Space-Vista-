@@ -1,0 +1,249 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+body{
+  overflow-x: hidden;
+}
+
+/* Navbar------------ */
+nav{
+  height: 5rem;
+  width: 100vw;
+  background-color: transparent;
+  box-shadow: 0 3px 10px rgba(255, 255, 255, 0.1);
+  display: flex;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  color: hsl(0, 0%, 59%);
+}
+
+/*Styling logo*/
+.logo{
+  padding:3vh 6vw;
+  text-align: center;
+}
+.logo img {
+  height: 100%;
+  width: 100%;
+}
+
+/*Styling Links*/
+.nav-links{
+  display: flex;
+  list-style: none; 
+  width: 88vw;
+  padding: 0 1.7vw;
+  justify-content: flex-end;
+  align-items: center;
+  text-transform: uppercase;
+}
+.nav-links li a{
+  text-decoration: none;
+  margin: 0 1.7vw;
+  color: var(--gray);
+}
+.nav-links li a:hover {
+  color: #fff;
+  font-weight: bolder;
+}
+.nav-links li {
+  position: relative;
+  
+}
+nav ul{
+  margin-bottom: 0px
+  
+}
+.nav-links li a::after {
+  content: "";
+  display: block;
+  height: 3px;
+  width: 0%;
+  background-color: var(--lb-color);
+  position: absolute;
+  transition: all ease-in-out 300ms;
+  margin: 0 0 0 10%;
+}
+.nav-links li a:hover::after{
+  width: 80%;
+}
+
+/*Styling Buttons*/
+/* .btn {
+  display: grid;
+  color: hsl(218.9deg 49.19% 36.27%);;
+  place-items: center;
+  background: #e3edf7;
+  padding: 0.3em 0.7em; 
+  border-radius: 10px;
+  box-shadow: 6px 6px 8px -1px rgba(3,4,3,0.15),
+  -2px -4px 10px -3px rgba(255,255,255,0.7);
+  border: 1px solid rgba(0,0,0,0);
+  cursor: pointer;
+  transition: transform 0.5s;
+  margin-right: 15px;
+}
+
+.btn:hover {
+  box-shadow: inset 4px 4px 6px -1px rgba(0,0,0,0.2),
+	      inset -4px -4px 6px -1px rgba(255,255,255,0.7),
+	      -0.5px -0.5px 0px rgba(255,255,255,1),
+	      0.5px 0.5px 0px rgba(0,0,0,0.15),
+	      0px 12px 10px -10px rgba(0,0,0,0.05);
+  border: 1px solid rgba(0,0,0,0.1);
+  transform: translateY(0.2em);
+} */
+
+
+.button {
+  position: relative;
+  display: inline-block;
+  border: none;
+  margin: 0px 8px;
+  padding: 6px 14px;
+  text-align: center;
+  font-size: 18px;
+  letter-spacing: 1px;
+  text-decoration: none;
+  color: hsl(0, 0%, 59%);;
+  background: transparent;
+  cursor: pointer;
+  transition: ease-out 0.5s;
+  border-radius: 10px;
+  box-shadow: inset 0 0 0 0 var(--lb-color);;
+}
+
+.button:hover {
+  color: white;
+  box-shadow: inset 0 -100px 0 0 var(--lb-color);
+}
+
+.button:active {
+  transform: scale(0.9);
+}
+
+/* List Nav bar */
+
+.dropdown-content{
+  font-size: small;
+  /* justify-content: start; */
+  position: fixed;
+  background-color: var(--wcolor);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+.dropdown-content li{
+  padding: 10px 0px; 
+}
+.dropdown-content li a{
+  color: black;
+}
+.dropdown-content li a:hover{
+  color: var(--lb-color) !important;
+
+}
+
+
+
+
+/*Styling Hamburger Icon*/
+.hamburger div{
+  width: 30px;
+  height:3px;
+  background: #f2f5f7;
+  margin: 5px;
+  transition: all 0.3s ease;
+}
+.hamburger{
+  display: none;
+}
+
+/*Stying for small screens*/
+@media screen and (max-width: 800px){
+  nav{
+      /* position: fixed; */
+      z-index: 3;
+  }
+  .dropdown-content{
+   position: relative;
+    background-color: rgb(197, 197, 197);
+    display: flex;
+    flex-direction: column;
+  }
+  .nav-links{
+    justify-content: center
+  }
+  .nav-links li{
+    margin: 20px 0px;
+  }
+  .hamburger{
+      display:block;
+      position: absolute;
+      cursor: pointer;
+      right: 10%;
+      top: 50%;
+      transform: translate(-5%, -50%);
+      z-index: 2;
+      transition: all 0.7s ease;
+  }
+  .nav-links{
+      position: fixed;
+      background: #131418;
+      height: 100vh;
+      width: 100%;
+      flex-direction: column;
+      clip-path: circle(50px at 90% -20%);
+      -webkit-clip-path: circle(50px at 90% -10%);
+      transition: all 1s ease-out;
+      pointer-events: none;
+  }
+  .nav-links.open{
+      clip-path: circle(1000px at 90% -10%);
+      -webkit-clip-path: circle(1000px at 90% -10%);
+      pointer-events: all;
+  }
+
+  .nav-links li:nth-child(1){
+      transition: all 0.5s ease 0.2s;
+  }
+  .nav-links li:nth-child(2){
+      transition: all 0.5s ease 0.4s;
+  }
+  .nav-links li:nth-child(3){
+      transition: all 0.5s ease 0.6s;
+  }
+  .nav-links li:nth-child(4){
+      transition: all 0.5s ease 0.7s;
+  }
+  .nav-links li:nth-child(5){
+      transition: all 0.5s ease 0.8s;
+  }
+  .nav-links li:nth-child(6){
+      transition: all 0.5s ease 0.9s;
+      margin: 0;
+  }
+  .nav-links li:nth-child(7){
+      transition: all 0.5s ease 1s;
+      margin: 0;
+  }
+  li.fade{
+      opacity: 1;
+  }
+}
+/*Animating Hamburger Icon on Click*/
+.toggle .line1{
+  transform: rotate(-45deg) translate(-5px,6px);
+}
+.toggle .line2{
+  transition: all 0.7s ease;
+  width:0;
+}
+.toggle .line3{
+  transform: rotate(45deg) translate(-5px,-6px);
+}

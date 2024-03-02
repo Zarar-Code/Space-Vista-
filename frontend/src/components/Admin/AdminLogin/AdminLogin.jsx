@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { setUser } from '../../features/authSlice';
+import { setUser } from '../../../features/authSlice';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 import axios from 'axios';
@@ -21,16 +21,16 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/api/v1/users/login', formData);
+      const response = await axios.post('/api/v1/admin/login', formData);
         dispatch(setUser(response.data.user));
-        navigate('/'); // Redirect to home page for regular users
+        navigate('/adminpanel'); // Redirect to home page for regular users
     } catch (error) {
       console.error('Login Error:', error);
     }
   };
 
   return (
-    <div>
+    <div className='section'>
       <h2 className='text-3xl font-bold'>Login</h2>
       <form onSubmit={handleSubmit}>
         <div>

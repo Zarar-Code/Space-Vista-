@@ -1,0 +1,20 @@
+
+.listing_container{
+  position: relative;
+  top: 75px;
+  left: 0%;
+}
+.container{
+    
+    padding: 35px;
+    background-color: #3d3d3d;
+    border-radius: 10px;
+    box-shadow: 5px 7px 20px black;
+}
+
+.listing_content{
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,5 +1,20 @@
-body{
-  background-color: #282c34;
-  color: white;
+*{
+  margin: 0;
+  padding: 0;
+ 
+  /* box-sizing: border-box; */
 }
+body{
+  /* background-color: #212121; */
+}
+:root{
+  --MB-color: rgb(1, 1, 82);
+  --gray:hsl(0, 0%, 82%);
+  --lb-color: #725AC1;
+  --wcolor: #fff;
+  --green-color:#198754;
 
+}
+.layout-section{
+  position: relative;
+}

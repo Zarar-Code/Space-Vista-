@@ -1,0 +1,166 @@
+
+
+
+
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../features/authSlice';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
+
+import "./Login.css"
+
+import axios from 'axios';
+
+const Login = () => {
+  // Register
+  const [rformData, setRFormData] = useState({
+    username: '',
+    fullName: '',
+    email: '',
+    password: '',
+  });
+
+  const handleChangeR = (e) => {
+    setRFormData({ ...rformData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmitR = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('/api/v1/users/register', formData);
+      console.log(response.data);
+      
+      // Redirect to the login page after successful registration
+      navigate('/login');
+
+    } catch (error) {
+      console.error('Registration Error:', error);
+    }
+  };
+  // Login
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  });
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate(); // Use useNavigate hook instead of useHistory
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('/api/v1/users/login', formData);
+        dispatch(setUser(response.data.user));
+        navigate('/'); // Redirect to home page for regular users
+    } catch (error) {
+      console.error('Login Error:', error);
+    }
+  };
+
+  return (
+
+      <div  className="Login-container">
+    {/* <input id="signup_toggle" type="checkbox"/> */}
+    <form  className="form" onSubmit={handleSubmit}>
+        <div  className="form_front">
+            <div  className="form_details">Login</div>
+            <input 
+          className="input" 
+          placeholder="EMAIL" 
+          type="email" 
+          name="email" 
+          value={formData.email} 
+          onChange={handleChange} 
+          required />
+            <input 
+          className="input" 
+          placeholder="PASSWORD" 
+          type="password" 
+          name="password" 
+          value={formData.password} 
+          onChange={handleChange} 
+          required />
+            <button 
+        className="btn" 
+        type="submit">Login</button>
+            <span  className="switch">Don't have an account? &nbsp; 
+                <label for="signup_toggle"  className="signup_tog">
+                  Sign Up
+                </label>
+            </span>
+        </div>
+        <div  className="form_back">
+            <div  className="form_details">Register</div>
+            <input type="text" 
+            className="input"
+            name="username" 
+            value={rformData.username} 
+            onChange={handleChangeR} 
+            required />
+
+              <input type="text"
+              className="input"
+              name="fullName"
+              value={rformData.fullName}
+              onChange={handleChangeR}
+              required 
+              />
+
+            <input type="email"
+            className="input"
+            name="email"
+            value={rformData.email}
+            onChange={handleChangeR}
+            required />
+
+            <input type="password"
+             className="input"
+            name="password"
+            value={rformData.password}
+            onChange={handleChangeR}
+            required
+            />
+
+            <button 
+            className="btn" 
+            onC={handleSubmitR}
+            >
+              Signup
+              </button>
+            <span  className="switch">Already have an account? 
+                <label for="signup_toggle"  className="signup_tog">
+                    Sign In
+                </label>
+            </span>
+        </div>
+    </form>
+</div>
+
+  );
+};
+
+export default Login;
+
+{/* <form onSubmit={handleSubmit}>
+<div>
+  <label>Username:</label>
+  <input type="text" name="username" value={formData.username} onChange={handleChange} required />
+</div>
+<div>
+  <label>Name:</label>
+  <input type="text" name="fullName" value={formData.fullName} onChange={handleChange} required />
+</div>
+<div>
+  <label>Email:</label>
+  <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+</div>
+<div>
+  <label>Password:</label>
+  <input type="password" name="password" value={formData.password} onChange={handleChange} required />
+</div>
+<button type="submit">Register</button>
+</form> */}

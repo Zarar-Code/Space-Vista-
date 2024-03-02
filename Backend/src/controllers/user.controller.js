@@ -141,6 +141,7 @@ const userLogin = asyncHandlder(async (req, res) => {
     "-password -refreshToken"
   );
 
+
   const options = {
     httpOnly: true,
     secure: true,
@@ -173,7 +174,8 @@ const userLogout = asyncHandlder(async (req, res) => {
     },
     {
       new: true,
-    }
+    },
+    
   );
   const options = {
     httpOnly: true,

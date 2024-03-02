@@ -7,16 +7,6 @@ const router = Router()
 
 
 router.route("/register").post(
-    // upload.fields([
-    //     {
-    //         name: "avatar",
-    //         maxCount: 1
-    //     },
-    //     {
-    //         name: "coverImage",
-    //         maxCount: 1
-    //     }
-    // ]),
     userRegister
     )
 router.route("/login").post(userLogin)
@@ -26,8 +16,6 @@ router.route("/logout").post(verifyJwt, userLogout)
 router.route("/refresh-token").post(refreshAccessToken)
 
 router.route("/allUsers").get(allUser)
-
-
 
 
 export default router;

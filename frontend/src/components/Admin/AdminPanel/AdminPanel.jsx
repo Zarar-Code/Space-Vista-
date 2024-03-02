@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { getAllUsers, selectAllUsers } from '../../features/userSlice';
+import React from 'react';
+// import { useSelector, useDispatch } from 'react-redux';
+// import { getAllUsers, selectAllUsers } from '../../features/userSlice';
 
 const AdminPanel = () => {
   // const dispatch = useDispatch();
