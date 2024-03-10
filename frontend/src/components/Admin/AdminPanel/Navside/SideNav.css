@@ -1,0 +1,52 @@
+.logo{
+	padding: 6px;
+    font-weight: bold;
+    margin-top: 30px;
+    margin-bottom: 25px;
+    margin-left: 24px;
+    color: #ffffff;
+}
+.logo span{
+	color: #3751ff;
+}
+.sidenav {
+  height: 100%;
+  width: 250px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #363740 ;
+  overflow: hidden;
+  transition: 0.5s;
+  padding-top: 10px;
+}
+.sidenav .icon-a {
+  letter-spacing: 1px;
+  padding: 15px 8px 15px 32px;
+  text-decoration: none;
+  font-size: 14px;
+  color: #b7b9c4;
+  font-family: 'Inter';
+  display: block;
+  font-family:  Helvetica, sans-serif;
+  /* transition: 0.3s; */
+}
+.active{
+  /* color: #ffffff;
+  background-color:#3e4049; */
+  /* filter: blur(0.5px); */
+  /* border-left: 1px solid #dde2ff;; */
+}
+.sidenav .icon-a:hover {
+  color: #dde2ff;
+  background-color:#3e4049;
+  filter: blur(0.5px);
+  border-left: 1px solid #dde2ff;;
+}
+.sidenav{
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import LogoutButton from '../LogoutButton/LogoutButton'; // Import the LogoutButton component
@@ -8,6 +8,7 @@ export default function Header() {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const [showDropdown, setShowDropdown] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const toggleSolutionsDropdown = () => {
     setShowDropdown(!showDropdown);
@@ -25,18 +26,30 @@ export default function Header() {
     // Handle redirect logic if needed
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY >= 56) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
     <>
-      <nav>
-        <div className="logo">
-          <img src="./images/logo.png" alt="Logo" srcset="" />
-        </div>
-        <div className={`hamburger ${isOpen ? 'open' : ''}`} onClick={toggleMenu}>
-          <div className="line1"></div>
-          <div className="line2"></div>
-          <div className="line3"></div>
-        </div>
-
+      <nav id='topnav' className={`navbr sticky ${isScrolled ? 'navbar-scrolled' : ''}`}>
+        <div className="nav-container">
+        {/* <div className="navbar-logo"> */}
+          <img className='nav-logo' src="./images/logo-light.png" alt="Logo" srcset="" />
+        {/* </div> */}
+        <div id="navigation">
         <ul className={`nav-links ${isOpen ? 'open' : ''}`}>
           <li><NavLink exact to="/" onClick={handleMenuItemClick}>Home</NavLink></li>
           <li
@@ -45,6 +58,7 @@ export default function Header() {
             onClick={handleMenuItemClick} // Close menu when clicking on Solutions
           >
             <NavLink to="#">Solutions</NavLink>
+            <span className='menu-arrow'></span>
             {showDropdown && (
               <div className="dropdown-content">
                 <li><NavLink to="/solution1">Solution 1</NavLink></li>
@@ -53,7 +67,8 @@ export default function Header() {
               </div>
             )}
           </li>
-          <li><NavLink to="/allSpace" onClick={handleMenuItemClick}>ALL SPACES</NavLink></li>
+          <li><NavLink to="/allSpace" onClick={handleMenuItemClick}>ALL SPACES</NavLink>
+          </li>
           <li><NavLink to="/listingSpace" onClick={handleMenuItemClick}>Listing Space</NavLink></li>
           <li><NavLink to="/contact" onClick={handleMenuItemClick}>Contact Us</NavLink></li>
           {!isAuthenticated ? (
@@ -67,6 +82,13 @@ export default function Header() {
             </>
           )}
         </ul>
+        </div>
+        </div>
+        <div className={`hamburger ${isOpen ? 'open' : ''}`} onClick={toggleMenu}>
+          <div className="line1"></div>
+          <div className="line2"></div>
+          <div className="line3"></div>
+        </div>
       </nav>
     </>
   );

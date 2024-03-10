@@ -1,128 +1,100 @@
 .Register-container {
+  background: linear-gradient(rgba(70, 70, 70, 0.7),rgba(53, 53, 53, 0.7)), url("../../../../public//images//register.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100vw;
+  /* border: 2px solid rgb(0, 255, 98); */
+  }
+  .home-logo{
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 30px;
+    padding-top: 20px;
+  }
+  .home-logo svg{
+    width: 50px;
+    height: 50px;
+    color:#2529b3;
+  }
+
+  .register-inner-container{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background-color: #212121;
+    height: 80vh;
   }
-  
-  .form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transform-style: preserve-3d;
-    transition: all 1s ease;
-  }
-  
-  .form .form_front {
+  .register-form{
+    /* border: 1px solid blue; */
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: space-evenly;
+    width: 440px;
+    height: 450px;
+    gap: 10px;
+    background-color: ghostwhite;
+    border-radius: 5px;
+  }
+
+  @media only screen and (max-width: 668px) {
+    .register-form{
+      width: 320px;
+    height: 420px;
+    }
+  }
+  
+  .register-content{
+    display: flex;
+    flex-direction: column;
     gap: 20px;
-    position: absolute;
-    backface-visibility: hidden;
-    padding: 65px 55px;
-    border-radius: 15px;
-    box-shadow: inset 2px 2px 10px rgba(0,0,0,1),
-    inset -1px -1px 5px rgba(255, 255, 255, 0.6);
+    width: 80%;
+  }
+  .register-input{
+    max-width: 100%;
+  background-color: #f5f5f5;
+  color: #000000;
+  padding: .15rem .5rem;
+  min-height: 40px;
+  border-radius: 4px;
+  outline: none;
+  border: none;
+  line-height: 1.15;
+  box-shadow: 0px 10px 20px -18px;
+  }
+  .register-input:focus {
+    border-bottom: 2px solid #5b5fc7;
+    border-radius: 4px 4px 2px 2px;
   }
   
-  .form .form_back {
+  .register-input:hover {
+    outline: 1px solid lightgrey;
+  }
+  .register-btn-detail{
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    gap: 18px;
-    position: absolute;
-    backface-visibility: hidden;
-    transform: rotateY(-180deg);
-    padding: 40px 75px;
-    border-radius: 15px;
-    box-shadow: inset 2px 2px 10px rgba(0,0,0,1),
-    inset -1px -1px 5px rgba(255, 255, 255, 0.6);
+    gap: 10px;
   }
-  
-  .form_details {
-    font-size: 25px;
-    font-weight: 600;
-    padding-bottom: 10px;
+  .register-btn{
+    background-color: #396cf0 ;
+    width: 35%;
+    padding: 5px;
     color: white;
+    border-radius: 5px;
+    transition: all 1s;
   }
-  
-  .input {
-    width: 285px;
-    min-height: 45px;
-    color: #fff;
-    outline: none;
-    transition: 0.35s;
-    padding: 0px 7px;
-    background-color: #212121;
-    border-radius: 6px;
-    border: 2px solid #212121;
-    box-shadow: 6px 6px 10px rgba(0,0,0,1),
-    1px 1px 10px rgba(255, 255, 255, 0.6);
+  .register-btn:hover{
+    background-color: #2158e2;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
   }
-  
-  .input::placeholder {
-    color: #b8b8b8;
+  .switch{
+    color: black !important;
   }
-  
-  .input:focus.input::placeholder {
-    transition: 0.3s;
-    opacity: 0;
+  .register_name h1{
+    font-size: 1.4rem;
   }
-  
-  .input:focus {
-    transform: scale(1.05);
-    box-shadow: 6px 6px 10px rgba(0,0,0,1),
-    1px 1px 10px rgba(255, 255, 255, 0.6),
-    inset 2px 2px 10px rgba(0,0,0,1),
-    inset -1px -1px 5px rgba(255, 255, 255, 0.6);
-  }
-  
-  .btn {
-    padding: 10px 35px;
-    cursor: pointer;
-    background-color: #212121;
-    border-radius: 6px;
-    border: 2px solid #212121;
-    box-shadow: 6px 6px 10px rgba(0,0,0,1),
-    1px 1px 10px rgba(255, 255, 255, 0.6);
-    color: #fff;
-    font-size: 15px;
-    font-weight: bold;
-    transition: 0.35s;
-  }
-  
-  .btn:hover {
-    transform: scale(1.05);
-    box-shadow: 6px 6px 10px rgba(0,0,0,1),
-    1px 1px 10px rgba(255, 255, 255, 0.6),
-    inset 2px 2px 10px rgba(0,0,0,1),
-    inset -1px -1px 5px rgba(255, 255, 255, 0.6);
-    color: rgb(64, 110, 194);
-  }
-  
-  .btn:focus {
-    transform: scale(1.05);
-    box-shadow: 6px 6px 10px rgba(0,0,0,1),
-    1px 1px 10px rgba(255, 255, 255, 0.6),
-    inset 2px 2px 10px rgba(0,0,0,1),
-    inset -1px -1px 5px rgba(255, 255, 255, 0.6);
-  }
-  
-  .form .switch {
-    font-size: 15px;
-    color: white;
-  }
-  
-  .form .switch  {
-    font-weight: 900;
-    cursor: pointer;
-    text-decoration: underline;
-  }
-  .signup_tog{
-    color: yellow;
-    cursor: pointer;
+  .register_tog{
+    color: #396cf0;
   }

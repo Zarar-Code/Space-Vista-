@@ -5,6 +5,7 @@ import Footer from './components/Footer/Footer'
 // import "./App.css"
 
 const Layout = () => {
+  
   return (
     <>
     <Navbar/>

@@ -1,0 +1,221 @@
+.admin-container{
+    background-color: #f7f8fc;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+  margin-left: 240px;
+}
+.head{
+	  padding:8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+.head-1 h1{
+  color: black;
+  font-size: 1.2rem;
+  font-family: 'Inter';
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin-left: 15px;
+}
+.head-2{
+    color: white;
+    display: flex;
+    align-items: center;
+    /* border: 1px solid red; */
+}
+.profile{
+	display: inline-block;
+  border-right: 2px solid#dfe0eb;
+  margin-right: 20px;
+}
+.pro-img{
+	float: left;
+	width: 40px;
+	border-radius: 50%;
+  margin-right: 20px;
+  transition: all 0.2s;
+}
+.pro-img:hover{
+	transform: translateY(-3px);
+}
+
+.head-2 p{
+  color: rgb(0, 0, 0);
+  font-weight: bolder;
+  margin-right: 10px;
+  letter-spacing: 1px;
+  font-size: 13px;
+  font-family: 'Inter';
+}
+.profile p span{
+	font-weight: 400;
+    font-size: 12px;
+    display: block;
+}
+.col-div-3{
+	width: 25%;
+	float: left;
+}
+.box{
+	height: 100px;
+	/* background-color: #ffffff; */
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+	margin-left: 10px;
+  border-radius: 8px;
+	padding:10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #9fa2b4;
+  transition: all 0.3s;
+}
+.box:hover{
+  border: 1px solid #3751ff;
+  color: #3751ff;
+}
+.box .span-1{
+  letter-spacing: 2px;
+    font-size: 17px;
+    /* color: #9fa2b4; */
+    font-weight: 600;
+    display: inline-block;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.box .span-2{
+	font-size: 30px;
+    font-weight: 700;
+    color: #1b1a1a;
+}
+.box-icon{
+	font-size: 40px!important;
+    float: right;
+    margin-top: 35px!important;
+    color: #252733;
+    padding-right: 10px;
+}
+.col-div-8{
+	width: 70%;
+	float: left;
+}
+.col-div-4{
+	width: 30%;
+	float: left;
+}
+.content-box{
+	padding: 20px;
+}
+.content-box p{
+	margin: 0px;
+    font-size: 20px;
+    color: #f7403b;
+}
+.content-box p span{
+	float: right;
+    background-color: #ddd;
+    padding: 3px 10px;
+    font-size: 15px;
+}
+.box-8, .box-4{
+	width: 95%;
+	background-color: #272c4a;
+	height: 330px;
+	
+}
+
+.box-8{
+	margin-left: 10px;
+}
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  
+}
+td, th {
+  text-align: left;
+  padding:15px;
+  color: #ddd;
+  border-bottom: 1px solid #81818140;
+}
+.circle-wrap {
+  margin: 50px auto;
+  width: 150px;
+  height: 150px;
+  background: #e6e2e7;
+  border-radius: 50%;
+}
+.circle-wrap .circle .mask,
+.circle-wrap .circle .fill {
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  border-radius: 50%;
+}
+.circle-wrap .circle .mask {
+  clip: rect(0px, 150px, 150px, 75px);
+}
+
+.circle-wrap .circle .mask .fill {
+  clip: rect(0px, 75px, 150px, 0px);
+  background-color: #f7403b;
+}
+.circle-wrap .circle .mask.full,
+.circle-wrap .circle .fill {
+  animation: fill ease-in-out 3s;
+  transform: rotate(126deg);
+}
+
+@keyframes fill {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(126deg);
+  }
+}
+.circle-wrap .inside-circle {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background: #fff;
+  line-height: 130px;
+  text-align: center;
+  margin-top: 10px;
+  margin-left: 10px;
+  position: absolute;
+  z-index: 100;
+  font-weight: 700;
+  font-size: 2em;
+}
+
+.head-2-iner .but{
+    font-size: 15px;
+    color: white;
+    background-color: #3751ff;
+    padding: 8px 17px;
+    border-radius: 9px;
+    font-weight: bold;
+    font-family: 'Inter';
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    transition: all 0.3s ease-in-out;
+}
+.head-2-iner .but:hover{
+  transform: translateY(-3px);
+    background-color: #283ecf;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+}
+.whole{
+  margin-top: 48px;
+  margin-left: 15px;
+}
+.my-col{
+  display: flex;
+  gap: 22px;
+}

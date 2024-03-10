@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../../features/authSlice';
 import { NavLink, useNavigate } from 'react-router-dom'; // Import useNavigate
+import { AiFillHome } from "react-icons/ai";
 import "./Login.css"
 
 import axios from 'axios';
@@ -35,11 +36,15 @@ const Login = () => {
   return (
 
       <div class="Login-container">
+        <div className='home-logo'> <NavLink to="/">< AiFillHome /></NavLink></div>
+        <div className="login-inner-container">
     <form class="form" onSubmit={handleSubmit}>
-        <div class="form_front">
-            <div class="form_details">Login</div>
+      <div className="login_name">
+            <h1>LOGIN HERE</h1>
+        </div>
+        <div className='login-content'>
             <input 
-            className="input" 
+            className="login-email" 
             type="email" 
             name="email" 
             placeholder='EMAIL'
@@ -48,22 +53,24 @@ const Login = () => {
             required />
 
             <input 
-            className="input"
+            className="login-password"
             type="password" 
             name="password"
             placeholder='PASSWORD'
             value={formData.password} 
             onChange={handleChange} 
             required />
-
-            <button class="btn">Login</button>
+        </div>
+        <div className='login-btn-detail'>
+            <button class="login-btn">Login</button>
             <span class="switch">Don't have an account? &nbsp;
-                <label for="signup_toggle" class="signup_tog">
+                <label for="signup_toggle" class="login_tog">
                 <NavLink to="/register">Sign Up</NavLink>
                 </label>
             </span>
         </div>
         </form>
+        </div>
     </div>
 
   );

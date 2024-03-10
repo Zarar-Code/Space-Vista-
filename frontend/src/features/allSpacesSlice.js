@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-export const getAllSpaces = createAsyncThunk('spaces/getAllSpaces', async () => {
+export const getAllSpaces = createAsyncThunk('getAllSpaces', async () => {
   const response = await axios.get('/api/v1/allSpaces');
   return response.data;
 });
@@ -33,4 +33,9 @@ const allSpacesSlice = createSlice({
 });
 
 export const selectAllSpaces = (state) => state.spaces.spaces;
+
+// Selector to get a space by ID
+export const selectSpaceById = (state, spaceId) =>
+  state.spaces.spaces.find((space) => space._id === spaceId);
+
 export default allSpacesSlice.reducer;

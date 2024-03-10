@@ -31,7 +31,7 @@ const AdminRegister = () => {
   };
 
   return (
-    <div>
+    <div style={{marginTop:"100px"}}>
       <h2>Register</h2>
       <form onSubmit={handleSubmit}>
         <div>

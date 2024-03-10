@@ -1,6 +1,7 @@
 import { asyncHandlder } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/ApiError.js";
 import { Admin } from '../models/admin.models.js'
+import { User } from "../models/user.models.js";
 
 import { ApiResponse } from "../utils/ApiResponse.js";
 
@@ -99,7 +100,7 @@ const adminRegister = asyncHandlder(async (req, res) => {
     if (!isPasswordValid) {
       throw new ApiError(404, "Invalid user credentials");
     }
-    console.log(admin);
+    // console.log(admin);
     //-------Send Token through cookies
     const { accessToken, refreshToken } = await generateAccessAndRefreshToken(
       admin._id
@@ -127,9 +128,86 @@ const adminRegister = asyncHandlder(async (req, res) => {
             accessToken,
             refreshToken,
           },
-          "User Logged in successfully"
+          "admin Logged in successfully"
         )
       );
   });
 
-  export { adminRegister, adminLogin };
+  const adminLogout = asyncHandlder(async (req, res) => {
+
+    const admin = Admin.findByIdAndUpdate(
+      req.admin._id,
+      {
+        $set: {
+          refreshToken: undefined,
+        },
+      },
+      {
+        new: true,
+      },
+      );
+      // console.log(admin)
+    const options = {
+      httpOnly: true,
+      secure: true,
+    };
+  
+    res
+      .status(200)
+      .clearCookie("accessToken", options)
+      .clearCookie("refreshToken", options)
+      .json(
+          new ApiResponse(
+          200,
+          {},
+          "Admin Logged Out successfully"
+          )
+      );
+  });
+
+  const adminPanel = asyncHandlder (async(req,res)=>{
+    // console.log("Hello")
+    const allUsers = await User.find().select(
+      "-password -refreshToken"
+    );
+    // console.log(allUsers)
+  
+    if(allUsers === ""){
+      throw new ApiError(500, "Error while fetching user")
+    }
+    res.json(allUsers)
+  });
+
+  const deleteUser = asyncHandlder(async (req,res)=>{
+
+    const { userId } = req.params;
+
+    // console.log(userId)
+
+    const deletedUser = await User.findOneAndDelete(userId)
+
+    if(!deleteUser){
+      throw new ApiError(500, "Error while deleting users")
+    }
+    return res
+      .status(201)
+      .json(new ApiResponse(200, deletedUser, "User Delete Successfully"));
+  });
+
+  const getAdmin = asyncHandlder(async (req,res)=>{
+
+    const admin = await Admin.findOne({ _id: req.admin._id });
+      // console.log(admin)
+      if(!admin){
+        throw new ApiError(500, "Error while fetching admin")
+      }
+    
+    return res
+      .status(201)
+      .json(new ApiResponse(200, admin, "Admin Get Successfully"));
+  });
+
+
+
+
+  export { adminRegister, adminLogin, adminPanel,  adminLogout, deleteUser, getAdmin};
