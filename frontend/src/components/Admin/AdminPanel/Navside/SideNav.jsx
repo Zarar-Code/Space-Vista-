@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import "./SideNav.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faUser  } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faUser , faShuttleSpace } from '@fortawesome/free-solid-svg-icons';
 
 
 const SideNav = () => {
@@ -27,6 +27,11 @@ return (
                 <NavLink to="/admin/allUsers" className={`icon-a ${activeLink === 'users' ? 'active-link' : ''}`}
                 onClick={() => handleNavLinkClick('users')}>
                 <FontAwesomeIcon icon={faUser } style={{marginRight :"15px"}}/>ALL USERS</NavLink>
+
+
+                <NavLink to="/admin/allSpaces" className={`icon-a ${activeLink === 'spaces' ? 'active-link' : ''}`}
+                onClick={() => handleNavLinkClick('spaces')}>
+                <FontAwesomeIcon icon={faShuttleSpace} style={{marginRight :"12px"}}/>ALL SPACES</NavLink>
             </div>
   );
 };

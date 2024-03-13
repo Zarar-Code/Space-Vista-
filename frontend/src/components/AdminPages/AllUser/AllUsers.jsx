@@ -7,6 +7,7 @@ import BounceLoader from "react-spinners/BounceLoader";
 import SideNavbar from '../../Admin/AdminPanel/Navside/SideNav';
 
 const AllUsers = () => {
+  
   const [allUsers, setAllUsers] = useState([]);
   const [loading, setLoading] = useState(true);
 

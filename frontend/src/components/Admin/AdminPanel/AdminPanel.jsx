@@ -14,6 +14,7 @@ const AdminPanel = () => {
 
   const [allUsers , setAllUsers]= useState([]);
   const [admin , setAdmin]= useState(undefined);
+  const [spaces , setSpaces]= useState([]);
 
   const getUsers = async () => {
     try {
@@ -32,11 +33,21 @@ const AdminPanel = () => {
       console.log(error);
     }
   };
-  // console.log(admin.data)
+
+  const getAllSpaces = async () => {
+    try {
+      const response = await axios.get('/api/v1/admin/adminSpaces');
+      setSpaces(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  // console.log(spaces)
 
   useEffect(() => {
     getUsers();
     getAdmin();
+    getAllSpaces();
   }, []);
 
   const handleLogoutRedirect = () => {
@@ -84,12 +95,14 @@ const AdminPanel = () => {
                           <div className='span-2'>{allUsers.length}</div>
                         </div>
                       </div>
+                      {spaces.length >= 0 && (
                       <div className="col-div-3">
                         <div className="box">
                           <div className='span-1'>TOTAL SPACES</div>
-                          <div className='span-2'>{allUsers.length}</div>
+                          <div className='span-2'>{spaces.length}</div>
                         </div>
                       </div>
+                      )}
                       <div className="col-div-3">
                         <div className="box">
                           <div className='span-1'>TOTAL SPACES</div>

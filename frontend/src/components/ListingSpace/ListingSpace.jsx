@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import AnchorLink from "react-anchor-link-smooth-scroll";
 
 import "./ListingSpace.css";
@@ -84,13 +84,27 @@ const ListingSpace = () => {
   return (
     <>
     <div className="listing_container">
-    <div className="listing_content">
-    <AnchorLink href="#roll">
-      <button  
-      className='btn'> PARTNER WITH US </button>
-      </AnchorLink>
+      <div className="listing-section-bg">
+        <div className="overlay"></div>
+        <div className="listing-content-container">
+          <div className="listing-heading">
+              <AnchorLink href="#roll">
+              <button  
+              className='listing-btn'> PARTNER WITH US </button>
+              </AnchorLink>
+          </div>
+        </div>
       </div>
-    <div className="container" id='roll'>
+      <div className="listing-content">
+        <div className="listing-c-1"><span>Why partner with SPACE VISTA?</span><br />Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minus, aperiam inventore! Ad culpa vitae laudantium rem inventore nulla nisi debitis rerum consequuntur laborum tenetur, amet magnam sed dolor vel? Sed.
+        Aut perspiciatis reiciendis aliquam illo accusantium vel aperiam quaerat mollitia voluptatibus molestias numquam dignissimos asperiores consequuntur, exercitationem nulla perferendis unde eos nam. Excepturi eum reprehenderit libero consectetur eveniet sunt distinctio!</div>
+        <div className="listing-c-2"><img src="./images/listing.jpg" alt="img" srcset="" /></div>
+      </div>
+
+      <div className="listing-bg-pic">   
+
+    <div className="listing-container" id='roll'>
+      <h1 className=''>LISTING YOUR SPACE</h1>
       <form className="row g-3" onSubmit={handleSubmit}>
         <div className="col-md-6">
           <input
@@ -170,7 +184,7 @@ const ListingSpace = () => {
             onChange={handleChange}
           />
         </div>
-        <div className="col-3">
+        <div className="col-4">
           <select
             className="form-select mt-4"
             name="selectedWorkspace"
@@ -265,10 +279,14 @@ const ListingSpace = () => {
             />
           </div>
         </div>
-        <div className="col-12">
+        <div className="col-6">
           <button type="submit" className="btn btn-primary mt-4">Submit</button>
         </div>
       </form>
+        <div className="col-6">
+          <NavLink to='/mySpace'><button type="submit" className="btn btn-primary mt-1">My Spaces</button></NavLink>
+        </div>
+    </div>
     </div>
     </div>
     </>

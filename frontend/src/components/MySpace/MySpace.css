@@ -1,0 +1,31 @@
+.mySpace-container-bg{
+    background: url('../../../public/images/bg4.jpg') center center;
+    padding: 4px 0 270px;
+    background-size: cover;
+    position: relative;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+  }
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(54, 65, 76, .6); /* Adjust the opacity here */
+  }
+  .mySpace-content{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    color: white;
+  }
+  .mySpace-heading{
+    font-size: 2.5rem;
+  font-family: "Fjalla One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  text-decoration: underline;
+  }

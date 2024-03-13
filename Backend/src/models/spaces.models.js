@@ -46,8 +46,19 @@ const spaceSchema = new Schema({
     description: {
     type: String
     },
+
     residentialArea: {
     type: String
+    },
+
+    createdBy: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+        required: true,
+    },
+    isActive:{
+        type: Boolean,
+        default: false
     },
     interiorImages: [
     {
@@ -60,7 +71,7 @@ const spaceSchema = new Schema({
         type: String,
         required: true
     }
-    ]
+    ],
 },
 {
     timestamps: true

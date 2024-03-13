@@ -12,7 +12,11 @@ import {
   EachSpace,
   AllUsers,
   Contact,
-  AdminHome
+  AdminHome,
+  MySpace,
+  MySpaceEdit,
+  AllSpaces,
+  ViewSpace
 } from "./components";
 import Layout from "./layout";
 import "./App.css";
@@ -21,15 +25,19 @@ function App() {
   return (
     <Router>
       <Routes>
+        {/* Users Routes */}
           <Route path="/register" element={<Register />} />
-          <Route path="/admin/register" element={<AdminRegister />} />
           <Route path="/login" element={<UserLogin />} />
-          
+
+          {/* Admin Routes */}
+          <Route path="/admin/register" element={<AdminRegister />} />
           <Route path="/admin/login" element={<AdminLogin />} />
-          <Route path="/AdminPanel" element={<AdminPanel />} />
           <Route path="/AdminHome" element={<AdminHome />} />
+          <Route path="/AdminPanel" element={<AdminPanel />} />
 
           <Route path="admin/allUsers" element={<AllUsers />} />
+          <Route path="admin/allSpaces" element={<AllSpaces />} />
+          <Route path="admin/allSpaces/:spaceId" element={<ViewSpace />} />
           
         <Route path="/" element={<Layout />}>
           <Route exact path="" element={<Home />} />
@@ -37,11 +45,13 @@ function App() {
           {/* Listing Space */}
           <Route path="listingSpace" element={<ListingSpace />} />
 
-          <Route path="contact" element={<Contact />} />
-
+          <Route path="mySpace" element={<MySpace />} />
+          <Route path="mySpace/:spaceId" element={<MySpaceEdit />} />
           <Route path="allSpace" element={<Search />} />
           <Route path="allSpace/:spaceId" element={<EachSpace />} />
 
+          {/* Other Routes */}
+          <Route path="contact" element={<Contact />} />
 
         </Route>
       </Routes>

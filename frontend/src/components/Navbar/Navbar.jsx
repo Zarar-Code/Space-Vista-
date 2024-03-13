@@ -47,7 +47,7 @@ export default function Header() {
       <nav id='topnav' className={`navbr sticky ${isScrolled ? 'navbar-scrolled' : ''}`}>
         <div className="nav-container">
         {/* <div className="navbar-logo"> */}
-          <img className='nav-logo' src="./images/logo-light.png" alt="Logo" srcset="" />
+          <img className='nav-logo' src="/images/logo-light.png" alt="Logo" srcset="" />
         {/* </div> */}
         <div id="navigation">
         <ul className={`nav-links ${isOpen ? 'open' : ''}`}>
@@ -57,7 +57,7 @@ export default function Header() {
             onMouseLeave={toggleSolutionsDropdown}
             onClick={handleMenuItemClick} // Close menu when clicking on Solutions
           >
-            <NavLink to="#">Solutions</NavLink>
+            {/* <NavLink to="#">Solutions</NavLink>
             <span className='menu-arrow'></span>
             {showDropdown && (
               <div className="dropdown-content">
@@ -65,7 +65,7 @@ export default function Header() {
                 <li><NavLink to="/solution2">Solution 2</NavLink></li>
                 <li><NavLink to="/solution3">Solution 3</NavLink></li>
               </div>
-            )}
+            )} */}
           </li>
           <li><NavLink to="/allSpace" onClick={handleMenuItemClick}>ALL SPACES</NavLink>
           </li>

@@ -40,7 +40,7 @@ setSelectedWorkspace(e.target.value);
 };
 
 const redirectToDetail = (spaceId)=>{
-    navigate(`/allSpace/${spaceId}`)
+    navigate(`/mySpace/${spaceId}`)
   }
 
 return (
@@ -81,22 +81,23 @@ return (
     <h1 className='discover'>"Discover an array of dynamic spaces waiting to elevate your work experience"</h1>
 
     <div className="spaces-sections">
-{
+    {
     filterData.map((space) => (
-    <div key={space._id} className="card" >
-                <img src={space.interiorImages[0]} className="card-img-top" alt="img" />
-                <div className="card-body">
-                    <h5 className="card-title">{space.selectedWorkspace.toUpperCase()}</h5>
-                    <p className="card-text"> {space.description}</p>
-                    <div className="readMore" onClick={()=>redirectToDetail(space._id)}>
-                        <span>
-                            READ ME
-                        </span>
-                    </div>
-                </div>
+        space.isActive ? (
+        <div key={space._id} className="card">
+            <img src={space.interiorImages[0]} className="card-img-top" alt="img" />
+            <div className="card-body">
+            <h5 className="card-title">{space.selectedWorkspace.toUpperCase()}</h5>
+            <p className="card-text">{space.description}</p>
+            <div className="readMore" onClick={() => redirectToDetail(space._id)}>
+                <span>READ ME</span>
+            </div>
+            </div>
         </div>
+        ) : null
+    ))
+    }
 
-    ))}
     </div>
 </div>
 );
