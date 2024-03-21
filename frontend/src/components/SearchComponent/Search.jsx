@@ -17,6 +17,7 @@ useEffect(() => {
 const fetchDataFromDatabase = async () => {
     try {
     const response = await axios.get('/api/v1/allSpaces');
+    console.log(response.data)
     dispatch(setData(response.data));
     } catch (error) {
     console.error('Error fetching data:', error);
@@ -40,7 +41,7 @@ setSelectedWorkspace(e.target.value);
 };
 
 const redirectToDetail = (spaceId)=>{
-    navigate(`/mySpace/${spaceId}`)
+    navigate(`/seeSpace/${spaceId}`)
   }
 
 return (
@@ -49,9 +50,11 @@ return (
     <div className="overlay"></div>
     <div className="all-space-content-container">
         <div className='space-heading'>ALL SPACES</div>
-        <div className="breadcrumb-position">
-        <li>zarar</li>
-        </div>
+        <div className="breadcrumb-position d-inline-block">
+                <ul className='nav-space'>
+                <li>All Spaces</li>
+                </ul>
+            </div>
     </div>
     </div>
 
@@ -65,16 +68,18 @@ return (
             required
             />
 
-    <select
+        <select
             className='search-option search-input'
             name="selectedWorkspace"
             value={selectedWorkspace}
             onChange={handleNameChange}
             required
         >
-            <option value="Coworking Space">Coworking Space</option>
-            <option value="Residential Space">Residential Space</option>
-          </select>
+                <option value="Coworking">Coworking</option>
+                <option value="Private Office">Private Offices</option>
+                <option value="Event Spaces">Events & Space</option>
+                <option value="Enterprise Office">Enterprise Office</option>
+            </select>
     <button className='searchbtn search-input' onClick={handleSearch}>Search</button>
     </form>
     
@@ -85,12 +90,19 @@ return (
     filterData.map((space) => (
         space.isActive ? (
         <div key={space._id} className="card">
-            <img src={space.interiorImages[0]} className="card-img-top" alt="img" />
+            <img src={space.exteriorImages[0]} className="card-img-top" alt="img" />
             <div className="card-body">
-            <h5 className="card-title">{space.selectedWorkspace.toUpperCase()}</h5>
-            <p className="card-text">{space.description}</p>
+
+                <div className="card-myheading">
+            <h5 className="city">{space.city.toUpperCase()}</h5> |
+            <h6  className="workSpace">{space.selectedWorkspace.toUpperCase()}</h6>
+                </div>
+                <p>{space.address}</p>
+
+                <h4>PKR {space.price}</h4>
+
             <div className="readMore" onClick={() => redirectToDetail(space._id)}>
-                <span>READ ME</span>
+                <span>Learn More</span>
             </div>
             </div>
         </div>

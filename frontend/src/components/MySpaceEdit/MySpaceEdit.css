@@ -1,4 +1,35 @@
 .image-preview{
+    flex-direction: row;
+    flex-wrap: wrap;
+    display: flex;
+    
+    padding: 5px;
+    
+}
+.image-preview img{
     width: 200px;
-    height: 200px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+}
+.edit-myspace-container{
+    padding: 30px;
+}
+
+@media screen and (max-width: 550px){
+    .mobile{
+        width: 100%;
+    }
+
+    .image-preview{
+        flex-direction: row;
+        flex-wrap: wrap;
+        display: flex;
+        padding: 5px;
+
+    }
+    .image-preview img{
+        width: 200px;
+        margin-right: 10px;
+        margin-bottom: 15px;
+    }
 }

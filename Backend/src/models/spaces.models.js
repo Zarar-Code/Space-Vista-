@@ -19,6 +19,8 @@ const spaceSchema = new Schema({
     type: String,
     required: true
     },
+
+
     propertyType: {
     type: String,
     required: true
@@ -27,22 +29,50 @@ const spaceSchema = new Schema({
     type: String,
     required: true
     },
+    price: {
+    type: String,
+    required: true
+    },
+    capacity: {
+    type: String,
+    required: true
+    },
+    address: {
+    type: String,
+    required: true
+    },
+    amenities: {
+    type: String,
+    },
+
+
     selectedWorkspace: {
     type: String,
     required: true
     },
+
     selectedCoworkingOption: {
     type: String
     },
-    customizedPlace: {
+    selectedEventspaces: {
     type: String
     },
+    selectedPrivate: {
+    type: String
+    },
+
+
+    // customizedPlace: {
+    // type: String
+    // },
+
     googleMapsLocation: {
     type: String
     },
     useAbleArea: {
     type: String
     },
+
     description: {
     type: String
     },

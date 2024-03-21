@@ -32,6 +32,7 @@
   .breadcrumb-position{
     background-color: white;
     position: relative;
+    color: #212121;
     top: 130px;
     z-index: 99;
     border-radius: 5px;
@@ -41,27 +42,28 @@
     letter-spacing: .5px;
     padding: 8px 24px;
     display: block;
+  
   }
-  .breadcrumb-position ul li{
+  .breadcrumb-position ul li span{
     font-size: 14px;
     font-weight: 500;
     padding-left: 0;
     display: inline-block;
-    margin-right: 20px;
+    font-family: "Axiforma";
+  }
+  .nav-space a{
+    font-family: "Axiforma";
+    font-weight: 400;
+    font-size: 14px;
   }
   .detail_container{
     padding: 85px 0px;
     position: relative;
-
   }
 .detail_Main{
   margin: 0px 80px;
 }
-@media only screen and (max-width: 600px) {
-  .detail_Main{
-    margin: 0px 40px;
-  }
-}
+
 .border{
   border: 1px solid #e7ecf2
 }
@@ -69,4 +71,114 @@
   position: sticky;
   top: 80px;
   margin-top: 15px;
+}
+
+.inner-detail{
+  grid-column-gap: 3rem;
+    border: 1px solid #212121;
+    padding: 3rem 2.5rem 3rem;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.detail-img{
+  width: 55%;
+}
+.detail-img img{
+  width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 11px;
+}
+.detail-content{
+  flex: 1;
+  
+  
+}
+.detail-content h1{
+  font-size: 2rem;
+    line-height: 1.2;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-weight: 400;
+    font-family: Axiforma;
+    
+}
+.spacer-medium{
+  width: 100%;
+  padding-top: 1rem;
+  padding-left: 0;
+}
+.dprice{
+  font-weight: 500;
+  color: var(--lb-color);
+  font-family: Axiforma;
+}
+.flex{
+  grid-column-gap: 0.5rem;
+    flex-wrap: wrap;
+    display: flex;
+}
+.capacity{
+  font-weight: bold;
+  font-family: Axiforma;
+}
+.cap{
+  
+  font-family: Axiforma;
+}
+.flex p{
+  color:#6d6e76;
+  font-family: Axiforma;
+  text-align: justify;
+}
+.flex p span{
+  color:#212121;
+  font-family: Axiforma;
+}
+/* ------------------------------------------------------------------------- */
+
+
+.swiper {
+  width: 100%;
+  padding-top: 50px !important;
+  padding-bottom: 50px !important;
+  /* border: 1px solid red; */
+}
+
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+}
+.swiper-wrapper{
+  width: 50% !important;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  border-radius: 20px;
+}
+
+/* mobile */
+@media only screen and (max-width: 600px) {
+  .detail_Main{
+    margin: 0px 40px;
+  }
+  .detail-img{
+    width: 100%;
+  }
+  .inner-detail{
+      padding: 3rem 1rem 3rem;
+
+  }
+}
+.seeSpace{
+  margin: 50px 0px;
+  font-size: 3rem;
+  font-family: 'Axiforma';
+}
+.seeSpace span{
+  font-weight: bold;
+  font-family: 'Axiforma';
 }

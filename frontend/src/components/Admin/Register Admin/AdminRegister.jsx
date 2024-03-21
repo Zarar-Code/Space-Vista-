@@ -8,6 +8,7 @@ const AdminRegister = () => {
     fullName: '',
     email: '',
     password: '',
+    avatar: null, // State for storing the selected avatar image
   });
 
   const navigate = useNavigate();
@@ -16,10 +17,23 @@ const AdminRegister = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // Function to handle file input change for avatar image
+  const handleAvatarChange = (e) => {
+    setFormData({ ...formData, avatar: e.target.files[0] }); // Get the first selected file
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const formDataToSend = new FormData();
+    formDataToSend.append('username', formData.username);
+    formDataToSend.append('fullName', formData.fullName);
+    formDataToSend.append('email', formData.email);
+    formDataToSend.append('password', formData.password);
+    formDataToSend.append('avatar', formData.avatar); // Append the avatar image
+
     try {
-      const response = await axios.post('/api/v1/admin/register', formData);
+      const response = await axios.post('/api/v1/admin/register', formDataToSend);
       console.log(response.data);
       
       // Redirect to the login page after successful registration
@@ -31,7 +45,7 @@ const AdminRegister = () => {
   };
 
   return (
-    <div style={{marginTop:"100px"}}>
+    <div style={{ marginTop: "100px" }}>
       <h2>Register</h2>
       <form onSubmit={handleSubmit}>
         <div>
@@ -45,6 +59,15 @@ const AdminRegister = () => {
         <div>
           <label>Email:</label>
           <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+        </div>
+        <div>
+          <label>Avatar Image:</label>
+          <input
+            type="file"
+            className="form-control"
+            onChange={handleAvatarChange}
+            required
+          />
         </div>
         <div>
           <label>Password:</label>

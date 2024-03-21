@@ -8,12 +8,12 @@ import { uploadOnCloudinary } from "../utils/cloundinary.js";
 
 const listingSpace = asyncHandlder(async(req, res) =>{
 
-    const { firstName, lastName, email, contactNo, propertyType, city, selectedWorkspace, selectedCoworkingOption, customizedPlace, googleMapsLocation, useAbleArea, description, residentialArea } = req.body;
+    const { firstName, lastName, email, contactNo, propertyType, city, selectedWorkspace, selectedCoworkingOption, googleMapsLocation, useAbleArea, description, residentialArea,selectedEventspaces,selectedPrivate, price,capacity,address,amenities } = req.body;
     const { user } = req;
   // console.log(user)
 
   if (
-    [firstName, lastName, email, contactNo, propertyType, city, selectedWorkspace].some(
+    [firstName, lastName, email, contactNo, propertyType, city, selectedWorkspace, price,capacity,address].some(
       (fields) => fields?.trim() === ""
     )
   ) {
@@ -26,10 +26,7 @@ const listingSpace = asyncHandlder(async(req, res) =>{
     ],
   });
   if (placeExisted) {
-    throw new ApiError(
-      409,
-      "Place with this email are already exist"
-    );
+    return res.status(409).json({ message: "Place with this email are already exist" });
   }
   
 //  --------Check for images, check for avatar
@@ -61,7 +58,7 @@ const listingSpace = asyncHandlder(async(req, res) =>{
   const interiorLocalPaths = req.files['interiorImages'].map(file => file.path);
     const exteriorLocalPaths = req.files['exteriorImages'].map(file => file.path);
 
-    console.log(interiorLocalPaths)
+    // console.log(interiorLocalPaths)
 
     // Check if images are uploaded
     if (!interiorLocalPaths || interiorLocalPaths.length === 0) {
@@ -87,13 +84,13 @@ const listingSpace = asyncHandlder(async(req, res) =>{
   //--------Create space object create entry in db
 
   const space = await Space.create({
-    firstName, lastName, email, contactNo, propertyType, city, selectedWorkspace, selectedCoworkingOption, customizedPlace, googleMapsLocation, useAbleArea, description, residentialArea,
+    firstName, lastName, email, contactNo, propertyType, city, selectedWorkspace, selectedCoworkingOption, googleMapsLocation, useAbleArea, description, residentialArea,selectedEventspaces,selectedPrivate,price,capacity,address,amenities,
     interiorImages: interiorImages.map(image => image.url),
       exteriorImages: exteriorImages.map(image => image.url),
     createdBy: user._id
   });
   //-------Check for user creation
-  // console.log(landlord)
+  // console.log(space)
   
   if (!space) {
     throw new ApiError(500, "Something went wrong while registering place");
@@ -150,7 +147,7 @@ const mySpaceEdit = asyncHandlder(async(req,res)=>{
 const updateSpace = asyncHandlder(async(req,res)=>{
 
   const { firstName, lastName, email, contactNo, propertyType, city, selectedWorkspace, selectedCoworkingOption, customizedPlace, googleMapsLocation, useAbleArea, description, residentialArea } = req.body;
-  console.log(firstName)
+  // console.log(firstName)
 
   if (
     [firstName, lastName, email, contactNo, propertyType, city, selectedWorkspace].some(
@@ -203,6 +200,20 @@ const updateSpace = asyncHandlder(async(req,res)=>{
     .json(new ApiResponse(200, space, "Update Place Successfully"));
 });
 
+const deleteSpace = asyncHandlder(async(req,res)=>{
+
+const {spacId} = req.params
+
+const deleteMySpace = await Space.findByIdAndDelete(spacId)
+
+if (!deleteMySpace) {
+  throw new ApiError(500, "Error while deleting space");
+}
+
+return res
+  .status(201)
+  .json(new ApiResponse(200, deleteMySpace, "Space Delete Successfully"));
+})
 
 
-export {listingSpace, allSpaces, mySpace, mySpaceEdit, updateSpace}
+export {listingSpace, allSpaces, mySpace, mySpaceEdit, updateSpace, deleteSpace}

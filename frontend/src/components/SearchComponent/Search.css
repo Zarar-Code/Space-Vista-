@@ -32,15 +32,21 @@
 
   .breadcrumb-position{
     background-color: white;
+    color: #212121;
     position: relative;
     top: 130px;
     z-index: 99;
     border-radius: 5px;
     box-shadow: 2px 2px 9px -1px black;
   }
+  .breadcrumb-position ul li{ 
+    font-family: "Axiforma";
+    font-weight: 400;
+    font-size: 14px;
+  }
   .spaces-sections{
     position: relative;
-    padding: 58px 55px;
+    padding: 50px 45px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -52,7 +58,7 @@
    
   }
   .card{
-    width: 18rem;
+    width: 20rem;
     transition: all 0.5s;
     margin: 15px;
   }
@@ -218,10 +224,6 @@
 }
 
 /* CARD CSS */
-.card-title{
-  font-size: 1.2rem;
-    font-weight: bold;
-}
 
 /* ead More Btn */
 
@@ -229,18 +231,19 @@
   display: inline-block;
   border-radius: 4px;
   background-color: var(--lb-color);
-  border: none;
-  color: #FFFFFF;
+  color: white;
+  /* color: #212121; */
   text-align: center;
-  font-size: 17px;
-  padding: 6px;
+  font-size: 14px;
+  padding: 5px;
   width: 103px;
-  transition: all 0.5s;
+  transition: all 0.2s;
   cursor: pointer;
   margin: 5px;
  }
  .readMore:hover{
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+ 
  }
  
  .readMore span {
@@ -256,12 +259,14 @@
   opacity: 0;
   top: 0;
   right: -15px;
-  transition: 0.5s;
+  transition: 0.2s;
   
  }
  
  .readMore:hover span {
   padding-right: 15px;
+  
+
   
  }
  
@@ -270,3 +275,86 @@
   right: 0;
   
  }
+
+/* -------Card Design-------- */
+
+/* .card {
+  position: relative;
+  width: 300px;
+  height: 200px;
+  background-color: #f2f2f2;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  perspective: 1000px;
+  box-shadow: 0 0 0 5px #ffffff80;
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card svg {
+  width: 48px;
+  fill: #333;
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2);
+}
+
+.card__content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #f2f2f2;
+  transform: rotateX(-90deg);
+  transform-origin: bottom;
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card:hover .card__content {
+  transform: rotateX(0deg);
+}
+
+.card__title {
+  margin: 0;
+  font-size: 24px;
+  color: #333;
+  font-weight: 700;
+}
+
+.card:hover svg {
+  scale: 0;
+}
+
+.card__description {
+  margin: 10px 0 0;
+  font-size: 14px;
+  color: #777;
+  line-height: 1.4;
+} */
+.card-myheading{
+  font-weight: bold;
+    font-size: 1.1rem;
+    gap: 3px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.card-body p{
+    font-weight: 500;
+    font-style: oblique;
+    margin: 5px 0px;
+}
+.card-body h4{
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--lb-color);
+    margin: 5px 0px;
+}

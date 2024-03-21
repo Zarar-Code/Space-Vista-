@@ -5,6 +5,7 @@ import './Register.css'
 import { AiFillHome } from "react-icons/ai";
 
 const Register = () => {
+  const [errorMessage, setErrorMessage] = useState('');
   const [formData, setFormData] = useState({
     username: '',
     fullName: '',
@@ -29,6 +30,10 @@ const Register = () => {
 
     } catch (error) {
       console.error('Registration Error:', error);
+      setErrorMessage(error.response.data.message);
+      setTimeout(() => {
+        setErrorMessage('');
+      }, 2000);
     }
   };
 
@@ -82,6 +87,11 @@ const Register = () => {
                 </label>
             </span>
             </div>
+            {errorMessage && (
+            <div className="error-message">
+              {errorMessage}
+            </div>
+          )}
       </form>
       </div>
     </div>

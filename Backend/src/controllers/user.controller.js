@@ -51,10 +51,7 @@ const userRegister = asyncHandlder(async (req, res) => {
   });
 // console.log(userExisted)
   if (userExisted) {
-    throw new ApiError(
-      409,
-      "User with this email or username are already exist"
-    );
+    return res.status(409).json({ message: "User with this email or username are already exist" });
   }
 
 
@@ -95,7 +92,7 @@ const userRegister = asyncHandlder(async (req, res) => {
     username: username.toLowerCase(),
   });
   //-------Check for user creation
-  console.log(user)
+  // console.log(user)
   const userCreated = await User.findById(user).select(
     "-password -refreshToken"
   );
@@ -123,13 +120,13 @@ const userLogin = asyncHandlder(async (req, res) => {
   });
 
   if (!user) {
-    throw new ApiError(404, "User does not exit");
+    return res.status(404).json({ message: "User does not exist" });
   }
   //-------Check Password
   const isPasswordValid = await user.isPasswordCorrect(password);
 
   if (!isPasswordValid) {
-    throw new ApiError(404, "Invalid user credentials");
+    return res.status(401).json({ message: "Invalid user credentials" });
   }
   //-------Send Token through cookies
   const { accessToken, refreshToken } = await generateAccessAndRefreshToken(

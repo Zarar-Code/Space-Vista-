@@ -18,7 +18,7 @@ export const verifyJwt = asyncHandlder(async (req, res, next) => {
             "-password -refreshToken"
         )
         if(!user){
-            throw new ApiError(401, "Invalid Access Token");
+            throw new ApiError(401 , "Invalid Access Token");
         }
 
         req.user = user;

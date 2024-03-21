@@ -35,7 +35,7 @@ const MySpaceEdit = () => {
     try {
       const response = await axios.get(`/api/v1/mySpace/${spaceId}`);
       setSpace(response.data.space); // Assuming the response has a 'space' property
-      // console.log(response.data.space)
+      console.log(response.data.space)
       const spaceData = response.data.space; // Assuming the response has 'space' object
       setFormData({
         firstName: spaceData.firstName || '',
@@ -71,7 +71,7 @@ const MySpaceEdit = () => {
   };
 
   if (space === null) {
-    return <div style={{marginTop:"250px"}} className='loader'><ClipLoader color="#36d7b7" /></div>;
+    return <div style={{marginTop:"250px"}} className='loader'><ClipLoader color="#725AC1" /></div>;
   }
 
   const handleInteriorImagesChange = (e) => {
@@ -137,6 +137,7 @@ const MySpaceEdit = () => {
     ));
   };
   // -----------------------------------------------------------------------------------
+  
 
   return (
     <>
@@ -148,6 +149,7 @@ const MySpaceEdit = () => {
           </div>
         </div>
       </div>
+      <div className="edit-myspace-container">
       {space ? (
         <form className="row g-3" onSubmit={handleSubmit}>
           <div className="col-md-6">
@@ -298,7 +300,7 @@ const MySpaceEdit = () => {
             </div>
           </div>
           {/* Images */}
-          <div className="col-6">
+          <div className="col-6 mobile">
           
             <div className="mb-3">
 
@@ -317,7 +319,7 @@ const MySpaceEdit = () => {
               {renderInteriorImages()}
             </div>
           </div>
-          <div className="col-6">
+          <div className="col-6 mobile">
             <div className="mb-3">
               <label htmlFor="exampleFormControlInput2" className="form-label" style={{ color: "white" }}>EXTERIOR  IMAGES</label>
               <input
@@ -334,15 +336,16 @@ const MySpaceEdit = () => {
             </div>
           </div>
           <div className="col-6">
-            <button type="submit" className="btn btn-primary mt-4">Submit</button>
+            <button type="submit" class="btn btn-outline-secondary mt-2">UPDATE</button>
           </div>
         </form>
       ) : (
         <>
-          <h1>No Space Found</h1>
+          <h1>Error:No Space Found</h1>
         </>
       )
       }
+      </div>
     </>
   );
 };

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { listingSpace, allSpaces, mySpace, mySpaceEdit, updateSpace } from "../controllers/spaces.controllers.js"
+import { listingSpace, allSpaces, mySpace, mySpaceEdit, updateSpace,deleteSpace } from "../controllers/spaces.controllers.js"
 import {upload} from "../middlewares/multer.middleware.js"
 import {verifyJwt} from "../middlewares/auth.middleware.js"
 
@@ -36,7 +36,8 @@ router.route("/mySpace/:spaceId").put(verifyJwt,
         }
     ]),
     updateSpace);
-
+    
+    router.route("/mySpace/:spacId").delete(verifyJwt, deleteSpace);
 
 
 export default router;

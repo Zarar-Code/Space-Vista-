@@ -119,3 +119,43 @@ text-decoration: underline;
 .btn{
   color: black;
 }
+
+.email-already{
+  color: red;
+  margin-top: 2px;
+  margin-left: 3px;
+}
+
+.yourself{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+.yourself-content{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.yourself-content input{
+  border-bottom: 1px solid var(--lb-color);
+  width: 87%;
+  padding: 8px;
+}
+.same-c{
+  width: 40%;
+  margin: 10px 25px;
+}
+.yourself-content input:focus{
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  outline: none;
+}
+
+.yourself-heading{
+  font-weight: 600;
+    margin-left: 22px;
+    color: var(--lb-color);
+    font-size: 1.1rem;
+}
+.same-t{
+  width: 85%;
+}

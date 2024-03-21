@@ -4,6 +4,7 @@ import axios from 'axios';
 import {  useNavigate } from 'react-router-dom';
 import BounceLoader from "react-spinners/BounceLoader";
 import SideNavbar from '../../Admin/AdminPanel/Navside/SideNav'
+import "./AllSpaces.css"
 
 const AllSpaces = () => {
 
@@ -69,6 +70,7 @@ const AllSpaces = () => {
             <>
                 {allSpaces.length > 0 ? (
                 <>
+                <div className="space-admin-cont">
         {
         allSpaces.map((item)=>(
             <div key={item._id}>
@@ -98,6 +100,7 @@ const AllSpaces = () => {
                     </div>
                     ))
                 }
+                </div>
                 
                 </>
                 ) : (

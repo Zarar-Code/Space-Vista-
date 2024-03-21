@@ -5,7 +5,6 @@ const adminAuthSlice = createSlice({
   initialState: {
     admin: null,
     isAuthenticated: localStorage.getItem('isAuthenticated') === 'true', // Set isAuthenticated initially to false
-    accessToken:""
   },
   reducers: {
     setAdmin(state, action) {

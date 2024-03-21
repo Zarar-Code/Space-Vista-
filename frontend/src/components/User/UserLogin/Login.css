@@ -19,7 +19,7 @@
     align-items: center;
     justify-content: space-evenly;
     width: 370px;
-    height: 345px;
+    height: 365px;
     gap: 10px;
     background-color: ghostwhite;
     border-radius: 5px;
@@ -97,4 +97,12 @@
   }
   .login_tog{
     color: #396cf0;
+  }
+  .error-message{
+    font-weight: 500;
+    background-color: #396cf0;
+    color: white;
+    padding: 7px 25px;
+    border-radius: 3px;
+    text-transform: uppercase;
   }

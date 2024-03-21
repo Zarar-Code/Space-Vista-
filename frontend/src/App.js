@@ -48,7 +48,7 @@ function App() {
           <Route path="mySpace" element={<MySpace />} />
           <Route path="mySpace/:spaceId" element={<MySpaceEdit />} />
           <Route path="allSpace" element={<Search />} />
-          <Route path="allSpace/:spaceId" element={<EachSpace />} />
+          <Route path="seeSpace/:spaceId" element={<EachSpace />} />
 
           {/* Other Routes */}
           <Route path="contact" element={<Contact />} />

@@ -17,6 +17,10 @@ const adminSchema = new Schema({
         lowercase: true,
         trim: true,
       },
+        avatar: {
+        type: String,
+        // required: true,
+        },
       fullName: {
       type: String,
       required: true,

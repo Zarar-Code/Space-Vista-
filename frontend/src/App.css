@@ -4,8 +4,16 @@
  
   /* box-sizing: border-box; */
 }
+
+
+@font-face {
+  font-family: Axiforma;
+  src: url(Kastelov_Axiforma_Regular.otf);
+
+}
 body{
   background-color: #f7f8fc;
+  font-family: Axiforma;
 }
 :root{
   --MB-color: rgb(1, 1, 82);

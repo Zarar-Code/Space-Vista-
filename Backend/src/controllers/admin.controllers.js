@@ -4,6 +4,7 @@ import { Admin } from "../models/admin.models.js";
 import { User } from "../models/user.models.js";
 import { Space } from "../models/spaces.models.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
+import { uploadOnCloudinary } from "../utils/cloundinary.js";
 
 const generateAccessAndRefreshToken = async (userId) => {
   try {
@@ -53,15 +54,31 @@ const adminRegister = asyncHandlder(async (req, res) => {
     );
   }
 
+  const avatar = req.files?.avatar[0].path;
+  console.log(avatar)
+
+  // if (!avatar) {
+  //   throw new ApiError(400, "avatar is required");
+
+
+  // ---------Upload them to cloudinary, avatar
+
+  const avatarImage = await uploadOnCloudinary(avatar);
+
+  if (!avatarImage) {
+    throw new ApiError(400, "avatarImage is required");
+  }
+
   const admin = await Admin.create({
     fullName,
     email,
     password,
-    // avatar: avatar.url,
+    avatar: avatarImage.url,
     // coverImage: coverImage?.url || "",
     username: username.toLowerCase(),
   });
   //-------Check for user creation
+  console.log(admin)
   const adminCreated = await Admin.findById(admin).select(
     "-password -refreshToken"
   );

@@ -10,12 +10,20 @@ import { adminRegister,
     viewAdminSpaces
 } from "../controllers/admin.controllers.js";
 import {verifyJwt} from "../middlewares/admin.middleware.js"
+import {upload} from "../middlewares/multer.middleware.js"
 
 const router = Router()
 
 
 //Admin Routes
-router.route("/register").post(adminRegister)
+router.route("/register").post(upload.fields([
+    {
+        name: "avatar",
+        maxCount: 1
+    },
+        ]),
+        adminRegister)
+        
 router.route("/login").post(adminLogin)
 
 router.route("/logout").post(verifyJwt, adminLogout)

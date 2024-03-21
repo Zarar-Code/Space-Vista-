@@ -19,7 +19,7 @@ const ViewSpace = () => {
 
   useEffect(() => {
     getSpace();
-  }, [spaceId]);
+  },);
 
   return (
     <>

@@ -6,13 +6,13 @@ import './Navbar.css';
 
 export default function Header() {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-  const [showDropdown, setShowDropdown] = useState(false);
+  // const [showDropdown, setShowDropdown] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
-  const toggleSolutionsDropdown = () => {
-    setShowDropdown(!showDropdown);
-  };
+  // const toggleSolutionsDropdown = () => {
+  //   setShowDropdown(!showDropdown);
+  // };
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -49,14 +49,14 @@ export default function Header() {
         {/* <div className="navbar-logo"> */}
           <img className='nav-logo' src="/images/logo-light.png" alt="Logo" srcset="" />
         {/* </div> */}
-        <div id="navigation">
+        {/* <div id="navigation"> */}
         <ul className={`nav-links ${isOpen ? 'open' : ''}`}>
           <li><NavLink exact to="/" onClick={handleMenuItemClick}>Home</NavLink></li>
-          <li
+          {/* <li
             onMouseEnter={toggleSolutionsDropdown}
             onMouseLeave={toggleSolutionsDropdown}
             onClick={handleMenuItemClick} // Close menu when clicking on Solutions
-          >
+          > */}
             {/* <NavLink to="#">Solutions</NavLink>
             <span className='menu-arrow'></span>
             {showDropdown && (
@@ -66,7 +66,7 @@ export default function Header() {
                 <li><NavLink to="/solution3">Solution 3</NavLink></li>
               </div>
             )} */}
-          </li>
+          {/* </li> */}
           <li><NavLink to="/allSpace" onClick={handleMenuItemClick}>ALL SPACES</NavLink>
           </li>
           <li><NavLink to="/listingSpace" onClick={handleMenuItemClick}>Listing Space</NavLink></li>
@@ -82,7 +82,7 @@ export default function Header() {
             </>
           )}
         </ul>
-        </div>
+        {/* </div> */}
         </div>
         <div className={`hamburger ${isOpen ? 'open' : ''}`} onClick={toggleMenu}>
           <div className="line1"></div>
