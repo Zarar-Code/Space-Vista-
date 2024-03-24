@@ -5,6 +5,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { selectSpaceById, getAllSpaces } from '../../features/allSpacesSlice';
 import ClipLoader from "react-spinners/ClipLoader";
+import axios from 'axios';
+// import { fetchOwnerById } from '../../features/ownerSlice'; 
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -16,6 +18,7 @@ const EachSpace = () => {
   const { spaceId } = useParams();
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
+  const [owner, setOwner] = useState(null);
 
   useEffect(() => {
     dispatch(getAllSpaces())
@@ -27,11 +30,30 @@ const EachSpace = () => {
   }, [dispatch]);
 
   const space = useSelector((state) => selectSpaceById(state, spaceId));
+  // console.log(space)
+
+  useEffect(() => {
+    if (space && space.createdBy) {
+      const fetchOwner = async () => {
+    
+        try {
+          const response = await axios.get(`/api/v1/users/${space.createdBy}`);
+          setOwner(response.data);
+          console.log(response.data)
+
+        } catch (error) {
+          console.error('Error fetching owner data:', error);
+          setOwner(null); // Optionally handle error by setting owner to null
+        }
+      };
+
+      fetchOwner();
+    }
+  }, [space]);
 
   if (loading) {
     return <div style={{marginTop:"250px"}} className='loader'><ClipLoader color="#725AC1" /></div>;
   }
-
   return (
     <>
       {space ? (
@@ -100,7 +122,37 @@ const EachSpace = () => {
           </div>
         </>
       ) : (
-        <p>No space found</p>
+        <p className='flex-No'>No space found</p>
+      )}
+      {owner && (
+        <div className="container">
+          <div className="col-lg-4 col-md-5 col-12 mt-4 mt-sm-0 pt-2 pt-sm-0 p-3">
+            <div className='sidebar sticky-sidebar border rounded '>
+              <div className='p-4 mt-4 text-center main-owner'>
+                <div className="avatar">
+                {owner && owner.owner.avatar ? (
+                      <div className="circular-image">
+                        <img src={owner.owner.avatar} alt="Avatar" />
+                      </div>
+                    ) : (
+                      <div className="default-avatar circular-image">
+                        <img src="/images/owner.png" alt="Default Avatar" />
+                      </div>
+                    )}
+                </div>
+                <div className="mt-4">
+                  <div className="text-muted mb-0 land">Land Owner</div>
+                  <div className="div">
+                  <h3 className='land mt-3'><span>OWNER NAME:</span>   {owner.owner.fullName}</h3>
+                  <h3 className='land mt-3'><span>CONTACT NO:</span>  {space.contactNo}</h3>
+                  <h3 className='land mt-3'><span>EMAIL:</span>  {space.email}</h3>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       )}
     </>
   );

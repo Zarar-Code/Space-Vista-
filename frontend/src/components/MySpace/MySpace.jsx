@@ -32,7 +32,7 @@ const MySpace = () => {
     }
   }, [mySpaces]); // Only run when mySpaces changes
 
-  const redirectToDetail = (spaceId) => {
+  const redirectToEdit = (spaceId) => {
     navigate(`/mySpace/${spaceId}`);
   };
 
@@ -71,7 +71,7 @@ const MySpace = () => {
         <div className="message-container">
           <p>Without your spaces, the SPACE VISTA sighs.</p>
           <h1>Register your space and join us as partners.</h1>
-          <NavLink to="/listingSpace"><button  className='btn-sm btn btn-outline-primary mt-3'>BECOME A PARTNER
+          <NavLink to="/listingSpace"><button style={{fontFamily:"Axiforma", padding:"10px"}}  className='btn-sm btn btn-outline-primary mt-4'>BECOME A PARTNER
           </button></NavLink>
         </div>
       ) : (
@@ -85,16 +85,23 @@ const MySpace = () => {
             <h1>"Explore and Edit Your Space Here for Personal Touches."</h1>
           </div>
           <div className="spaces-container">
-            {mySpaces.map((item) => (
-              <div key={item._id} className="card" style={{ width: "18rem" }}>
-                <img src={item.exteriorImages[0]} className="card-img-top" alt="..." />
-                <div className="card-body">
-                  <h5 className="card-title">{item.selectedWorkspace}</h5>
-                  <p className="card-text">Some quick example text to build on the .</p>
-                  <div style={{color:"white", padding:"6px 22px"}} onClick={() => redirectToDetail(item._id)} className="btn btn-primary mt-2">
-                    EDIT
+            {mySpaces.map((space) => (
+                <div key={space._id} className="card">
+                  <img src={space.exteriorImages[0]} className="card-img-top" alt="img" />
+                  <div className="card-body">
+      
+                      <div className="card-myheading">
+                  <h5 className="city">{space.city.toUpperCase()}</h5> |
+                  <h6  className="workSpace">{space.selectedWorkspace.toUpperCase()}</h6>
+                      </div>
+                      <p>{space.address}</p>
+      
+                      <h4>PKR {space.price}</h4>
+      
+                  <div className="edit" onClick={() => redirectToEdit(space._id)}>
+                      <span>EDIT</span>
                   </div>
-                  <button type="submit" onClick={()=>deleteSpace(item._id)} class="btn btn-outline-danger ml-3 mt-2">DELETE</button>
+                  <button type="submit" onClick={()=>deleteSpace(space._id)} class="space-d">DELETE</button>
                 </div>
               </div>
             ))}

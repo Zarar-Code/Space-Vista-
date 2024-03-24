@@ -227,7 +227,7 @@ nav ul{
       position: fixed;
       background: #131418;
       height: 100vh;
-      width: 55%;
+      width: 100%;
       flex-direction: column;
       clip-path: circle(50px at 90% -20%);
       -webkit-clip-path: circle(50px at 90% -10%);

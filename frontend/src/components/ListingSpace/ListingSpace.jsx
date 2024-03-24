@@ -100,7 +100,7 @@ const ListingSpace = () => {
       setTimeout(() => {
         setSuccessMessage('');
         navigate('/');
-      }, 2000);
+      }, 1000);
     } catch (error) {
       if (error.response.status === 409) {
         setErrMessage('This email is already registered');
@@ -128,7 +128,7 @@ const ListingSpace = () => {
           <div className="listing-heading">
               <AnchorLink href="#roll">
               <button  
-              className='listing-btn'> PARTNER WITH US </button>
+              className='l-button'> PARTNER WITH US </button>
               </AnchorLink>
           </div>
         </div>
@@ -143,14 +143,14 @@ const ListingSpace = () => {
 
     <div className="listing-container" id='roll'>
 
-      <h1 className=''>LISTING YOUR SPACE</h1>
+      <h1>LISTING YOUR SPACE</h1>
       {
         !isAuthenticated ?(
-          <div class="alert alert-warning" role="alert">
+          <div className="alert alert-warning" role="alert">
             FIRST LOGIN TO BECOME A PARTNER
           </div>
         ):(
-          <h1>READY TO BECOME A PARTNER</h1>
+          <h3>READY TO BECOME A PARTNER</h3>
         )
       }
       <form className="row g-3 main-listing-form" onSubmit={handleSubmit}>

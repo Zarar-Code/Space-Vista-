@@ -4,6 +4,7 @@ import authReducer from './features/authSlice';
 import searchReducer from './features/searchSlice'
 import allSpacesReducer from './features/allSpacesSlice';
 import adminAuthReducer from './features/adminAuthSlice'
+// import ownerReducer from './features/ownerSlice' 
 
 const persistedAuthState = localStorage.getItem('isAuthenticated') === 'true';
 
@@ -13,7 +14,8 @@ export const store = configureStore({
     // users: userReducer,
     spaces: allSpacesReducer,
     search: searchReducer,
-    adminAuth: adminAuthReducer
+    adminAuth: adminAuthReducer,
+    // owner: ownerReducer,
   },
   preloadedState: {
     auth: {

@@ -1,7 +1,7 @@
 import { asyncHandlder } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/ApiError.js";
 import { User } from "../models/user.models.js";
-// import { uploadOnCloudinary } from "../utils/cloundinary.js";
+import { uploadOnCloudinary } from "../utils/cloundinary.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import jwt from "jsonwebtoken"
 
@@ -26,7 +26,7 @@ const generateAccessAndRefreshToken = async (userId) => {
 const userRegister = asyncHandlder(async (req, res) => {
   //--------Get user details from frontend
   const { username, fullName, email, password } = req.body;
-  console.log( username, email, fullName, password)
+  // console.log( username, email, fullName, password)
   // console.log( name, email, password)
 
   //--------Validation - not empty
@@ -59,14 +59,14 @@ const userRegister = asyncHandlder(async (req, res) => {
 
   // const avatarLocalPath = req.files?.avatar[0]?.path;
   // // console.log(req.files)
-  // let coverImageLocalPath;
-  // if (
-  //   req.files &&
-  //   Array.isArray(req.files.coverImage) &&
-  //   req.files.coverImage.length > 0
-  // ) {
-  //   coverImageLocalPath = req.files.coverImage[0].path;
-  // }
+  let avatarLocalPath;
+  if (
+    req.files &&
+    Array.isArray(req.files.avatar) &&
+    req.files.avatar.length > 0
+  ) {
+    avatarLocalPath = req.files.avatar[0].path;
+  }
 
   // if (!avatarLocalPath) {
   //   throw new ApiError(400, "Avatar Image is required");
@@ -74,7 +74,7 @@ const userRegister = asyncHandlder(async (req, res) => {
 
   //---------Upload them to cloudinary, avatar
 
-  // const avatar = await uploadOnCloudinary(avatarLocalPath);
+  const avatar = await uploadOnCloudinary(avatarLocalPath);
   // const coverImage = await uploadOnCloudinary(coverImageLocalPath);
   // if (!avatar) {
   //   throw new ApiError(400, "Avatar is required");
@@ -87,7 +87,7 @@ const userRegister = asyncHandlder(async (req, res) => {
     fullName,
     email,
     password,
-    // avatar: avatar.url,
+    avatar: avatar?.url || "",
     // coverImage: coverImage?.url || "",
     username: username.toLowerCase(),
   });
@@ -235,17 +235,21 @@ const refreshAccessToken = asyncHandlder(async (req, res)=>{
     }
 })
 
-const allUser = asyncHandlder(async (req, res)=>{
-  const allUsers = await User.find().select(
+const ownerId = asyncHandlder(async (req, res)=>{
+  const { ownerId } = req.params;
+
+  const owner = await User.findById(ownerId).select(
+    //Remove password and refreshToken
     "-password -refreshToken"
   );
-  // console.log(allUser)
 
-  if(allUser === ""){
-    throw new ApiError(500, "Error while fetching user")
-  }
-  res.json(allUsers)
+    if (!owner) {
+      throw new ApiError(500, "Something went wrong while fetching Owner Detail");
+    }
+    console.log(owner)
+    res.status(200).json({ owner });
+  
 })
 
 
-export { userRegister, userLogin, userLogout, refreshAccessToken, allUser };
+export { userRegister, userLogin, userLogout, refreshAccessToken, ownerId };

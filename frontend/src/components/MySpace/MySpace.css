@@ -73,3 +73,40 @@
     text-align: center;
     font-weight: 600;
 }
+.edit{
+  display: inline-block;
+    border-radius: 4px;
+    background-color: var(--lb-color);
+    color: white;
+    text-align: center;
+    font-size: 16px;
+    padding: 7px;
+    width: 90px;
+    transition: all 0.2s;
+    cursor: pointer;
+    margin: 5px;
+    transition: all ease-in-out 0.3s;
+}
+.edit:hover{
+  background-color: #5c47a0;
+  transform:translateY(-1px)
+}
+.space-d{
+  display: inline-block;
+    border-radius: 4px;
+    border: 1px solid #e11c1c;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    font-size: 16px;
+    padding: 7px;
+    width: 90px;
+    transition: all 0.2s;
+    cursor: pointer;
+    margin: 5px;
+    transition: all ease-in 0.3s;
+}
+.space-d:hover{
+  background-color: #b8040d;
+  color: white;
+  transform:translateY(-1px)
+}

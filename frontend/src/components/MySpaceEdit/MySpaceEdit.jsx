@@ -20,12 +20,24 @@ const MySpaceEdit = () => {
     contactNo: '',
     propertyType: '',
     city: '',
+
+
     selectedWorkspace: '',
     selectedCoworkingOption: '',
-    useAbleArea: '',
-    residentialArea: '',
-    description: '',
+    selectedEventspaces:'',
+    
+    selectedPrivate:'',
+    residentialArea:'',
+
     googleMapsLocation: '',
+    useAbleArea: '',
+    description:'',
+
+    price:'',
+    capacity:'',
+    address:'',
+    amenities:'',
+
     interiorImages: [],
     exteriorImages: []
   });
@@ -35,21 +47,32 @@ const MySpaceEdit = () => {
     try {
       const response = await axios.get(`/api/v1/mySpace/${spaceId}`);
       setSpace(response.data.space); // Assuming the response has a 'space' property
-      console.log(response.data.space)
+      // console.log(response.data.space)
       const spaceData = response.data.space; // Assuming the response has 'space' object
+
       setFormData({
         firstName: spaceData.firstName || '',
         lastName: spaceData.lastName || '',
         email: spaceData.email || '',
         contactNo: spaceData.contactNo || '',
+
         propertyType: spaceData.propertyType || '',
         city: spaceData.city || '',
         selectedWorkspace: spaceData.selectedWorkspace || '',
         selectedCoworkingOption: spaceData.selectedCoworkingOption || '',
-        useAbleArea: spaceData.useAbleArea || '',
+        selectedEventspaces: spaceData.selectedEventspaces || '',
+        selectedPrivate: spaceData.selectedPrivate || '',
         residentialArea: spaceData.residentialArea || '',
+
+        useAbleArea: spaceData.useAbleArea || '',
         description: spaceData.description || '',
         googleMapsLocation: spaceData.googleMapsLocation || '',
+
+        price: spaceData.price || '',
+        capacity: spaceData.capacity || '',
+        address: spaceData.address || '',
+        amenities: spaceData.amenities || '',
+
         interiorImages: spaceData.interiorImages || [],
         exteriorImages: spaceData.exteriorImages || []
       });
@@ -77,6 +100,7 @@ const MySpaceEdit = () => {
   const handleInteriorImagesChange = (e) => {
     const files = Array.from(e.target.files);
     setInteriorImages(files);
+    // console.log(files)
   };
 
   const handleExteriorImagesChange = (e) => {
@@ -152,189 +176,381 @@ const MySpaceEdit = () => {
       <div className="edit-myspace-container">
       {space ? (
         <form className="row g-3" onSubmit={handleSubmit}>
-          <div className="col-md-6">
-            <input
-              type="text"
-              className="form-control mt-4"
-              placeholder="FIRST NAME"
-              name="firstName"
-              value={formData.firstName}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="col-md-6">
-            <input
-              type="text"
-              className="form-control mt-4"
-              placeholder="LAST NAME"
-              name="lastName"
-              value={formData.lastName}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="col-7">
-            <input
-              type="email"
-              className="form-control mt-4"
-              placeholder="EMAIL"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="col-5">
-            <input
-              type="text"
-              className="form-control mt-4"
-              placeholder="CONTACT NO."
-              name="contactNo"
-              value={formData.contactNo}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="col-auto">
-            <select
-              className="form-select mt-4"
-              name="propertyType"
-              value={formData.propertyType}
-              onChange={handleChange}
-              required
-            >
-              <option value="">Choose...</option>
-              <option value="Single Owner">Single Owner</option>
-              <option value="Multiple Owners">Multiple Owners</option>
-            </select>
-          </div>
-          <div className="col-5">
-            <input
-              type="text"
-              className="form-control mt-4"
-              placeholder="CITY OF PROPERTY"
-              name="city"
-              value={formData.city}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="col-5">
-            <input
-              type="text"
-              className="form-control mt-4"
-              placeholder="Google Maps Pin Location"
-              name="googleMapsLocation"
-              value={formData.googleMapsLocation}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="col-4">
-            <select
-              className="form-select mt-4"
-              name="selectedWorkspace"
-              value={formData.selectedWorkspace}
-              onChange={handleChange}
-              required
-            >
-              <option value="">WORKSPACES</option>
-              <option value="Coworking Space">Coworking Space</option>
-              <option value="Residential Space">Residential Space</option>
-            </select>
-          </div>
-          {formData.selectedWorkspace === 'Coworking Space' && (
-            <>
-              <div className="col-3">
-                <select
-                  className="form-select mt-4"
-                  name="selectedCoworkingOption"
-                  value={formData.selectedCoworkingOption}
-                  onChange={handleChange}
-                  required
-                >
-                  <option value="Coworking Space">Coworking Area</option>
-                  <option value="Private Office">Private Office</option>
-                  <option value="Event Space">Event Space</option>
-                  <option value="Customized Office">Customized Office</option>
-                </select>
-              </div>
-              <div className="col-5">
-                <input
-                  type="text"
-                  className="form-control mt-4"
-                  placeholder="Usable Area in Sq. ft"
-                  name="useAbleArea"
-                  value={formData.useAbleArea}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-            </>
-          )}
-          {formData.selectedWorkspace === 'Residential Space' && (
-            <>
-              <div className="col-5">
-                <input
-                  type="text"
-                  className="form-control mt-4"
-                  placeholder="Residential Area in Sq. ft"
-                  name="residentialArea"
-                  value={formData.residentialArea}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-            </>
-          )}
-          <div className="col-12">
-            <div className="mb-3 mt-4">
-              <textarea
-                className="form-control"
-                rows="3"
-                placeholder="Description About Your Place"
-                name="description"
-                value={formData.description}
-                onChange={handleChange}
-              ></textarea>
+          <div className="yourself">
+            <div className="yourself-heading">
+              <h2>Tell us about yourself</h2>
             </div>
-          </div>
-          {/* Images */}
-          <div className="col-6 mobile">
-          
-            <div className="mb-3">
+              <div className="yourself-content">
+                <div className="same-c">
+                  <input
+                    type="text"
+                    // className="form-control mt-2"
+                    placeholder="FIRST NAME"
+                    name="firstName"
+                    value={formData.firstName}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <div className="same-c">
+                  <input
+                    type="text"
+                    // className="form-control mt-2"
+                    placeholder="LAST NAME"
+                    name="lastName"
+                    value={formData.lastName}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <div className="same-c">
+                  <input
+                    type="email"
+                    // className="form-control mt-2"
+                    placeholder="EMAIL"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                  />
+                  </div>
+                <div className="same-c">
+                  <input
+                    type="text"
+                    // className="form-control mt-2"
+                    placeholder="CONTACT NO."
+                    name="contactNo"
+                    value={formData.contactNo}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+              </div>
+        </div>
+        <div className="property">
+        <div className="yourself-heading">
+              <h2>Tell us about your property</h2>
+            </div>
+            <div className="yourself-content">
+              {/* Selected */}
+                <div className="same-c">
+                    <select
+                      className="form-select mt-2"
+                      name="selectedWorkspace"
+                      value={formData.selectedWorkspace}
+                      onChange={handleChange}
+                      required
+                    >
+                      <option value="">WORKSPACES</option>
+                          <option value="Coworking">Coworking</option>
+                          <option value="Private Office">Private Offices</option>
+                          <option value="Event Spaces">Events & Space</option>
+                          <option value="Enterprise Office">Enterprise Office</option>
+                          <option value="Residential Space">Residential Space</option>
+                        
+                    </select>
+                  </div>
+                  {formData.selectedWorkspace === 'Coworking' && (
+                    <>
+                      <div className=" same-c">
+                        <select
+                          className="form-select mt-2"
+                          name="selectedCoworkingOption"
+                          value={formData.selectedCoworkingOption}
+                          onChange={handleChange}
+                          required
+                        >
+                          <option value="">Choose..</option>
+                          <option value="Hot Desk">Hot Desk</option>
+                          <option value="Dedicated Desk">Dedicated Desk</option>
+                        </select>
+                      </div>
+                      <div className="same-c">
+                        <input
+                          type="text"
+                          className="mt-2"
+                          placeholder="CAPACITY OF PEOPLE"
+                          name="capacity"
+                          value={formData.capacity}
+                          onChange={handleChange}
+                          required
+                        />
+                      </div>
+                      <div className="same-c">
+                          <input
+                            type="text"
+                            className="mt-2"
+                            placeholder="CURRENT RENTAL (PKR)"
+                            name="price"
+                            value={formData.price}
+                            onChange={handleChange}
+                            required
+                          />
+                    </div>
+                      <div className="same-c">
+                          <input
+                            type="text"
+                            className="mt-2"
+                            placeholder="AMENITIES"
+                            name="amenities"
+                            value={formData.amenities}
+                            onChange={handleChange}
+                            required
+                          />
+                    </div>
+                    </>
+                  )}
+                  {formData.selectedWorkspace === 'Private Office' && (
+                    <>
+                    <div className=" same-c">
+                        <select
+                          className="form-select mt-2"
+                          name="selectedPrivate"
+                          value={formData.selectedPrivate}
+                          onChange={handleChange}
+                          required
+                        >
+                          <option value="">Choose..</option>
+                          <option value="Small Office">Small Office</option>
+                          <option value="Large Office">Large Office</option>
+                        </select>
+                      </div>
+                      <div className="same-c">
+                        <input
+                          type="text"
+                          className="mt-2"
+                          placeholder="CAPACITY OF PEOPLE"
+                          name="capacity"
+                          value={formData.capacity}
+                          onChange={handleChange}
+                          required
+                        />
+                      </div>
+                      <div className="same-c">
+                          <input
+                            type="text"
+                            className="mt-2"
+                            placeholder="CURRENT RENTAL (PKR)"
+                            name="price"
+                            value={formData.price}
+                            onChange={handleChange}
+                            required
+                          />
+                    </div>
+                    <div className="same-c">
+                          <input
+                            type="text"
+                            className="mt-2"
+                            placeholder="AMENITIES"
+                            name="amenities"
+                            value={formData.amenities}
+                            onChange={handleChange}
+                            required
+                          />
+                    </div>
+                    </>
+                  )}
+                  {formData.selectedWorkspace === 'Event Spaces' && (
+                    <>
+                      <div className=" same-c">
+                        <select
+                          className="form-select mt-2"
+                          name="selectedEventspaces"
+                          value={formData.selectedEventspaces}
+                          onChange={handleChange}
+                          required
+                        >
+                          <option value="">Choose..</option>
+                          <option value="Event Space">Event Space</option>
+                          <option value="Training Room">Training Room</option>
+                          <option value="Meeting Room">Meeting Room</option>
+                        </select>
+                      </div>
+                      <div className="same-c">
+                        <input
+                          type="text"
+                          className="mt-2"
+                          placeholder="CAPACITY OF PEOPLE"
+                          name="capacity"
+                          value={formData.capacity}
+                          onChange={handleChange}
+                          required
+                        />
+                      </div>
+                      <div className="same-c">
+                          <input
+                            type="text"
+                            className="mt-2"
+                            placeholder="CURRENT RENTAL (PKR)"
+                            name="price"
+                            value={formData.price}
+                            onChange={handleChange}
+                            required
+                          />
+                    </div>
+                    <div className="same-c">
+                          <input
+                            type="text"
+                            className="mt-2"
+                            placeholder="AMENITIES"
+                            name="amenities"
+                            value={formData.amenities}
+                            onChange={handleChange}
+                            required
+                          />
+                    </div>
+                    </>
+                  )}
+                  {formData.selectedWorkspace === 'Enterprise Office' && (
+                    <>
+                      <div className="same-c">
+                        <input
+                          type="text"
+                          className="mt-2"
+                          placeholder="CAPACITY OF PEOPLE"
+                          name="capacity"
+                          value={formData.capacity}
+                          onChange={handleChange}
+                          required
+                        />
+                      </div>
+                      <div className="same-c">
+                          <input
+                            type="text"
+                            className="mt-2"
+                            placeholder="CURRENT RENTAL (PKR)"
+                            name="price"
+                            value={formData.price}
+                            onChange={handleChange}
+                            required
+                          />
+                    </div>
+                    <div className="same-c">
+                          <input
+                            type="text"
+                            className="mt-2"
+                            placeholder="AMENITIES"
+                            name="amenities"
+                            value={formData.amenities}
+                            onChange={handleChange}
+                            required
+                          />
+                    </div>
+                    </>
+                  )}
 
-              <label htmlFor="exampleFormControlInput1" className="form-label" style={{ color: "white" }}>INTERIOR IMAGES</label>
-              <input
-                id='exampleFormControlInput1'
-                type="file"
-                className="form-control"
-                multiple
-                onChange={handleInteriorImagesChange}
-                required
-              />
+                {formData.selectedWorkspace === 'Residential Space' && (
+                  <>
+                    <div className="same-c">
+                      <input
+                        type="text"
+                        className="mt-2"
+                        placeholder="Residential Area in Sq. ft"
+                        name="residentialArea"
+                        value={formData.residentialArea}
+                        onChange={handleChange}
+                        required
+                      />
+                    </div>
+                  </>
+                )}
+{/* Common */}
+                <div className="same-c">
+                  <select
+                    className="form-select mt-2"
+                    name="propertyType"
+                    value={formData.propertyType}
+                    onChange={handleChange}
+                    required
+                  >
+                    <option value="">Choose...</option>
+                    <option value="Single Owner">Single Owner</option>
+                    <option value="Multiple Owners">Multiple Owners</option>
+                  </select>
+                </div>
+                <div className="same-c">
+                  <input
+                    type="text"
+                    className=" mt-2"
+                    placeholder="CITY OF PROPERTY"
+                    name="city"
+                    value={formData.city}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <div className="same-c">
+                  <input
+                    type="text"
+                    className=" mt-2"
+                    placeholder="PROPERTY ADDRESS"
+                    name="address"
+                    value={formData.address}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <div className="same-c">
+                  <input
+                    type="text"
+                    className="mt-2"
+                    placeholder="Google Maps Pin Location (OPTIONAL)"
+                    name="googleMapsLocation"
+                    value={formData.googleMapsLocation}
+                    onChange={handleChange}
+                  />
+                </div>
+          
+                <div className="same-c">
+                        <div className="mb-3">
+                        <label for="exampleFormControlInput2" class="form-label" >EXTERIOR  IMAGES</label>
+                          <input
+                          id='exampleFormControlInput2'
+                            type="file"
+                            className="form-control"
+                            multiple
+                            onChange={handleExteriorImagesChange}
+                            required
+                          />
+                        </div>
+                        <div className="image-preview">
+                            {renderExteriorImages()}
+                      </div>
+                  </div>
+
+                <div className="same-c">
+                  <div className="mb-3">
+                  <label for="exampleFormControlInput1" class="form-label">INTERIOR IMAGES</label>
+                    <input
+                    id='exampleFormControlInput1'
+                      type="file"
+                      className="form-control"
+                      multiple
+                      onChange={handleInteriorImagesChange}
+                      required
+                    />
+                  </div>
+                  <div className="image-preview">
+                    {renderInteriorImages()}
+                  </div>
+                </div>
+                
+
+                <div className="same-t">
+                  <div className="mb-3 mt-2">
+                    <textarea
+                      className="form-control"
+                      rows="3"
+                      placeholder="Description About Your Place"
+                      name="description"
+                      value={formData.description}
+                      onChange={handleChange}
+                    ></textarea>
+                  </div>
+                </div>
+                
             </div>
-            
-            <div className="image-preview">
-              {renderInteriorImages()}
-            </div>
-          </div>
-          <div className="col-6 mobile">
-            <div className="mb-3">
-              <label htmlFor="exampleFormControlInput2" className="form-label" style={{ color: "white" }}>EXTERIOR  IMAGES</label>
-              <input
-                id='exampleFormControlInput2'
-                type="file"
-                className="form-control"
-                multiple
-                onChange={handleExteriorImagesChange}
-                required
-              />
-            </div>
-            <div className="image-preview">
-              {renderExteriorImages()}
-            </div>
-          </div>
+        </div>
           <div className="col-6">
             <button type="submit" class="btn btn-outline-secondary mt-2">UPDATE</button>
           </div>

@@ -146,20 +146,21 @@ const mySpaceEdit = asyncHandlder(async(req,res)=>{
 
 const updateSpace = asyncHandlder(async(req,res)=>{
 
-  const { firstName, lastName, email, contactNo, propertyType, city, selectedWorkspace, selectedCoworkingOption, customizedPlace, googleMapsLocation, useAbleArea, description, residentialArea } = req.body;
-  // console.log(firstName)
+  const { firstName, lastName, email, contactNo, propertyType, city, selectedWorkspace, selectedCoworkingOption, googleMapsLocation, useAbleArea, description, residentialArea,selectedEventspaces,selectedPrivate, price,capacity,address,amenities } = req.body;
+  // console.log(req.body)
 
   if (
-    [firstName, lastName, email, contactNo, propertyType, city, selectedWorkspace].some(
+    [firstName, lastName, email, contactNo, propertyType, city, selectedWorkspace, price,capacity,address].some(
       (fields) => fields?.trim() === ""
     )
   ) {
     throw new ApiError(400, "All fields are required");
   }
+  // console.log(req.files)
   const interiorLocalPaths = req.files['interiorImages'].map(file => file.path);
     const exteriorLocalPaths = req.files['exteriorImages'].map(file => file.path);
 
-    console.log(interiorLocalPaths)
+    // console.log(interiorLocalPaths)
 
     // Check if images are uploaded
     if (!interiorLocalPaths || interiorLocalPaths.length === 0) {
@@ -184,13 +185,13 @@ const updateSpace = asyncHandlder(async(req,res)=>{
   //--------Create space object create entry in db
 
   const space = await Space.updateOne({
-    firstName, lastName, email, contactNo, propertyType, city, selectedWorkspace, selectedCoworkingOption, customizedPlace, googleMapsLocation, useAbleArea, description, residentialArea,
+    firstName, lastName, email, contactNo, propertyType, city, selectedWorkspace, selectedCoworkingOption, googleMapsLocation, useAbleArea, description, residentialArea,selectedEventspaces,selectedPrivate,price,capacity,address,amenities,
     interiorImages: interiorImages.map(image => image.url),
       exteriorImages: exteriorImages.map(image => image.url),
     // createdBy: user._id
   });
   //-------Check for user creation
-  console.log(space)
+  // console.log(space)
   
   if (!space) {
     throw new ApiError(500, "Something went wrong while updating place");
