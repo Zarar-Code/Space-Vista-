@@ -83,7 +83,7 @@ const MySpaceEdit = () => {
 
   useEffect(() => {
     fetchEditSpace();
-  }, []);
+  });
 
   const handleChange = (e) => {
     const { name, value } = e.target;

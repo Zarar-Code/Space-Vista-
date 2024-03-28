@@ -246,7 +246,7 @@ const ownerId = asyncHandlder(async (req, res)=>{
     if (!owner) {
       throw new ApiError(500, "Something went wrong while fetching Owner Detail");
     }
-    console.log(owner)
+    // console.log(owner)
     res.status(200).json({ owner });
   
 })

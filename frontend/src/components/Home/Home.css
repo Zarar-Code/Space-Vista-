@@ -31,5 +31,106 @@
 }
 
 .banner-heading{
-    font-size: 50px;
+    font-weight: bold;
+    font-size: 2.5rem;
+    letter-spacing: 3px;
+    font-family: 'Axiforma';
+}
+
+.container-home{
+    margin: 100px;
+    display: flex;
+    padding: 30px 10px;
+    gap: 50px;
+    
+}
+
+.video-player {
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    border-radius: 10px;
+
+} 
+.content-video{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+
+}
+.content-video h1{
+    font-size: 30px;
+    font-weight: 600;
+    font-family: "Inter";
+    
+    
+}
+.content-video p{
+    color: #8492a6;
+    font-family: "Inter";
+}
+.space{
+    padding: 10px;
+}
+.btn-video{
+    padding: 7px 14px;
+    background-color: var(--lb-color);
+    color: white;
+    border-radius: 5px;box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    transition: all 0.2s ease-out;
+}
+.btn-video:hover{
+    transform: translateX(5px);
+}
+/* Servise---------------------- */
+.services-main{
+    background-color: rgb(249 252 255);
+    padding: 100px 0px;
+}
+.content-sh{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.services-main h1{    
+    font-size: 35px;
+    margin-bottom: 5px;
+}
+.services-main p{
+    font-size: 1.2rem;
+    max-width: 610px;
+    text-align: center;
+}
+.service-t{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* align-items: start; */
+    margin: 80px 30px;
+}
+.t-1{
+    max-width: 240px;
+    margin: 15px 45px;
+}
+.t-1 h5{
+    font-size: 25px;
+    text-align: center;
+    font-weight: 500;
+    margin-bottom: 12px;
+}
+.t-1 p{
+    text-align: justify;
+}
+
+
+
+
+
+
+/* Mobile */
+@media only screen and (max-width: 1050px) {
+    .container-home{
+        flex-wrap: wrap;
+    }
 }

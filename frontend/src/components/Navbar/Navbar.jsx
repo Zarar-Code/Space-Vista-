@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import LogoutButton from '../LogoutButton/LogoutButton'; // Import the LogoutButton component
 import './Navbar.css';
+import {motion} from 'framer-motion'
 
 export default function Header() {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
@@ -47,7 +48,12 @@ export default function Header() {
       <nav id='topnav' className={`navbr sticky ${isScrolled ? 'navbar-scrolled' : ''}`}>
         <div className="nav-container">
         {/* <div className="navbar-logo"> */}
-          <img className='nav-logo' src="/images/logo-light.png" alt="Logo" srcset="" />
+        <motion.div
+        drag
+        dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }} // Constrain drag to the parent container
+        dragElastic={0.6}
+        >
+          <img className='nav-logo' src="/images/logo-light.png" alt="Logo" srcset="" /></motion.div>
         {/* </div> */}
         {/* <div id="navigation"> */}
         <ul className={`nav-links ${isOpen ? 'open' : ''}`}>

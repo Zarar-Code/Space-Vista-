@@ -173,7 +173,7 @@
   /* justify-content: left; */
   flex-direction: column;
   flex-wrap: wrap;
-  align-items: start;
+  align-items: center;
 }
 .avatar{
   width: 150px; /* Adjust as needed */

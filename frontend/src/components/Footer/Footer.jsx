@@ -1,5 +1,5 @@
 import React from 'react'
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import "./Footer.css"
 
 export default function Footer() {
@@ -29,12 +29,12 @@ export default function Footer() {
                         <h3>Company Name</h3>
                         <p>Praesent sed lobortis mi. Suspendisse vel placerat ligula. Vivamus ac sem lacus. Ut vehicula rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit pulvinar dictum vel in justo.</p>
                     </div> */}
-                    <div class="col item social"><a href="#">
-                      <i class="icon ion-social-facebook"></i></a>
-                      <a href="#"><i class="icon ion-social-twitter"></i></a>
-                      <a href="#"><i class="icon ion-social-snapchat"></i></a>
-                      <a href="#"><i class="icon ion-social-instagram"></i></a>
-                      </div>
+                    <div class="col item social"><Link to="#">
+                    <i class="icon ion-social-facebook"></i></Link>
+                    <Link to="#"><i class="icon ion-social-twitter"></i></Link>
+                    <Link to="#"><i class="icon ion-social-snapchat"></i></Link>
+                    <Link to="#"><i class="icon ion-social-instagram"></i></Link>
+                    </div>
                 </div>
                 <p class="copyright">SPACE VISTA © {new Date().getFullYear()}</p>
             </div>

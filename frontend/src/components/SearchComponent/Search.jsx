@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 
 import axios from 'axios';
 import "./Search.css";
+import {motion} from 'framer-motion'
 
 const Search = () => {
 const dispatch = useDispatch();
@@ -83,7 +84,11 @@ return (
     <button className='searchbtn search-input' onClick={handleSearch}>Search</button>
     </form>
     
-    <h1 className='discover'>"Discover an array of dynamic spaces waiting to elevate your work experience"</h1>
+    <motion.div 
+    initial={{x:-100}}
+    animate={{ x: 100 }}
+    transition={{ type: "spring", stiffness: 100 }}
+    className='discover'>"Discover an array of dynamic spaces waiting to elevate your work experience"</motion.div>
 
     <div className="spaces-sections">
     {
