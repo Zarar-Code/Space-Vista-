@@ -25,8 +25,8 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await axios.post('/api/v1/users/login', formData);
-  
-        dispatch(setUser(response.data.user));
+        dispatch(setUser(response.data.data));
+        // console.log(response.data)
         navigate('/');
     } 
     catch (error) {

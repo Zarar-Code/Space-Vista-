@@ -1,7 +1,7 @@
 *{
   margin: 0;
   padding: 0;
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: "Nunito Sans", sans-serif;
 }
 body{
   overflow-x: hidden;
@@ -31,6 +31,7 @@ body{
     box-shadow: 0 0 3px rgba(50, 60, 70, 0.5);
 }
 .navbar-scrolled .nav-links li a{
+  font-family: "Axiforma";
     color: #36414c;
 }
 .navbar-scrolled .nav-links li a:hover{
@@ -105,7 +106,7 @@ body{
   line-height: 24px;
   text-transform: uppercase;
   transition: all .5s;
-  font-family: "Inter", sans-serif;
+  font-family: "Axiforma";
   padding-left: 18px;
   padding-right: 18px;
 }
@@ -141,7 +142,7 @@ nav ul{
   line-height: 24px;
   text-transform: uppercase;
   transition: all .5s;
-  font-family: "Inter", sans-serif;
+  font-family: "Axiforma";
   padding: 0px 18px;
   /* border:1px solid var(--lb-color);
   padding: 10px 20px;

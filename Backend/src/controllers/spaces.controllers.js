@@ -10,7 +10,7 @@ const listingSpace = asyncHandlder(async(req, res) =>{
 
     const { firstName, lastName, email, contactNo, propertyType, city, selectedWorkspace, selectedCoworkingOption, googleMapsLocation, useAbleArea, description, residentialArea,selectedEventspaces,selectedPrivate, price,capacity,address,amenities } = req.body;
     const { user } = req;
-  // console.log(user)
+  // console.log(firstName)
 
   if (
     [firstName, lastName, email, contactNo, propertyType, city, selectedWorkspace, price,capacity,address].some(
@@ -117,7 +117,7 @@ const mySpace = asyncHandlder(async(req,res)=>{
 
   const userSpaces = await Space.find({ createdBy: user._id });
 
-  if (userSpaces.length === 0) {
+  if (userSpaces.length < 0) {
     return res
     .status(404)
     .json(new ApiResponse(200, {}, "No spaces found for this user."));

@@ -7,13 +7,11 @@ import {motion} from 'framer-motion'
 
 export default function Header() {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-  // const [showDropdown, setShowDropdown] = useState(false);
+  // const refreshToken = useSelector((state) => state.auth.accessToken);
+  // console.log(refreshToken)
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // const toggleSolutionsDropdown = () => {
-  //   setShowDropdown(!showDropdown);
-  // };
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);

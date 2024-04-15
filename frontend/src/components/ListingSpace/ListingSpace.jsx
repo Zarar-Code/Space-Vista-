@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 // import Authenticaton from '../../features/authSlice'
 import { useSelector } from 'react-redux';
 import AnchorLink from "react-anchor-link-smooth-scroll";
+import SyncLoader from "react-spinners/SyncLoader";
 
 import "./ListingSpace.css";
 
@@ -11,6 +12,10 @@ import "./ListingSpace.css";
 const ListingSpace = () => {
 
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+
+  const [mySpaces, setMySpaces] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [formVisible, setFormVisible] = useState(true);
 
   const [formData, setFormData] = useState({
     firstName: '',
@@ -38,11 +43,10 @@ const ListingSpace = () => {
     amenities:''
   });
 
-  const navigate = useNavigate();
 
   const [interiorImages, setInteriorImages] = useState([]);
   const [exteriorImages, setExteriorImages] = useState([]);
-  const [successMessage, setSuccessMessage] = useState('');
+  // const [successMessage, setSuccessMessage] = useState('');
   const [errMessage, setErrMessage] = useState('');
 
 
@@ -67,6 +71,7 @@ const ListingSpace = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
   
+    setLoading(true);
     // Create a new FormData object
     const formDataToSend = new FormData();
   
@@ -86,7 +91,7 @@ const ListingSpace = () => {
     for (let i = 0; i < exteriorImages.length; i++) {
       formDataToSend.append('exteriorImages', exteriorImages[i]);
     }
-  
+    
     try {
       // Send formDataToSend using axios
       await axios.post('/api/v1/landlord/listingSpace', formDataToSend, {
@@ -94,16 +99,14 @@ const ListingSpace = () => {
           'Content-Type': 'multipart/form-data'
         }
       });
-  
-      setSuccessMessage('Space Listing Successfully');
-  
-      setTimeout(() => {
-        setSuccessMessage('');
-        navigate('/');
-      }, 1000);
+
+      setLoading(false)
+      setFormVisible(false)
+      
     } catch (error) {
       if (error.response.status === 409) {
         setErrMessage('This email is already registered');
+        setLoading(false)
       } else {
         console.error('Registration Error:', error);
       } if (error.response && error.response.status === 401) {
@@ -115,7 +118,28 @@ const ListingSpace = () => {
         console.error('API Request Error:', error);
       }
     }
+
+    
+      
   };
+
+
+  // --------------------------
+  const fetchSpace = async () => {
+    try {
+      const response = await axios.get('/api/v1/mySpace');
+      const mySpaces = response.data.data;
+
+        setMySpaces(mySpaces)
+
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchSpace();
+  }, []);
   
 
   return (
@@ -143,6 +167,8 @@ const ListingSpace = () => {
 
     <div className="listing-container" id='roll'>
 
+    {formVisible && (
+        <>
       <h1>LISTING YOUR SPACE</h1>
       {
         !isAuthenticated ?(
@@ -153,6 +179,13 @@ const ListingSpace = () => {
           <h3>READY TO BECOME A PARTNER</h3>
         )
       }
+
+      
+      {loading ? (
+        <div className="loader-mySpace">
+          <SyncLoader color="#725AC1" />
+        </div>
+        ):(
       <form className="row g-3 main-listing-form" onSubmit={handleSubmit}>
         <div className="yourself">
             <div className="yourself-heading">
@@ -181,7 +214,7 @@ const ListingSpace = () => {
                     required
                   />
                 </div>
-                <div className="same-c">
+                <div className="same-c flex-c">
                   <input
                     type="email"
                     // className="form-control mt-2"
@@ -532,33 +565,35 @@ const ListingSpace = () => {
         {
           isAuthenticated ?(
             <>
-            <div className="col-6">
-              <button type="submit" className="btn btn-primary mt-2">Submit</button>
+           <div className="viewlis2">
+              <button type="submit" className=" mt-2">Submit</button>
             </div>
-            {
-              successMessage && (
-                <div className="alert alert-success" role="alert">
-                    {successMessage}
-                  </div>
-                )}
                 </>
           ):(
-            <div className="col-6">
-              <button disabled type="submit" className="btn btn-primary mt-2">Submit</button>
+            <div className="viewlis2">
+              <button disabled type="submit" className=" mt-2">Submit</button>
             </div>
           )
         }
         
       </form>
+      )}
+      </>
+
+      )}
+
+          {!formVisible && (
+            <div className='Successful' >
+              <h2>Congratulations! <br/> Your Listing is Submitted!</h2>
+            </div>
+          )}
       {
-        isAuthenticated ?(
+        isAuthenticated && mySpaces.length > 0 &&(
         <>
-        <div className="col-6">
-          <NavLink to='/mySpace'><button type="submit" class="btn btn-outline-success mt-2">My Spaces</button></NavLink>
+        <div className="viewlis">
+          <NavLink to='/mySpace'><button type="submit" class=" mt-2">View Listing</button></NavLink>
         </div>
         </>
-        ):(
-          null
         )
       }
     </div>

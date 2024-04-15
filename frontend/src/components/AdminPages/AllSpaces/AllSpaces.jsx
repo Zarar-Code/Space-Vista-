@@ -75,7 +75,7 @@ const AllSpaces = () => {
         allSpaces.map((item)=>(
             <div key={item._id}>
                 <div class="card" style={{width: "12rem"}}>
-                    <img src={item.exteriorImages[0]} class="card-img-top" alt="image"/>
+                    <img src={item.exteriorImages[0]} class="card-img-top" alt="i"/>
                     <div class="card-body">
                     <h5 class="card-title">{item.firstName}</h5>
                     <p class="card-text">{item.selectedWorkspace}</p>
@@ -90,11 +90,11 @@ const AllSpaces = () => {
                         onChange={() => handleCheckboxChange(item._id, item.isActive)}
                         />
                         <label className="form-check-label" htmlFor={`flexSwitchCheckDefault-${item._id}`}>
-                            {item.isActive ? 'Active' : 'Inactive'}
+                            {item.isActive ? 'ACTIVE' : 'IN-ACTIVE'}
                         </label>
 
                         </div>
-                            <button onClick={() => redirectToDetails(item._id)} class="">View</button>
+                            <button className='view-b' onClick={() => redirectToDetails(item._id)}>View</button>
                         </div>
                         </div>
                     </div>

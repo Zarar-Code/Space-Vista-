@@ -77,7 +77,7 @@ const EachSpace = () => {
               <div className="detail-content">
                 <h1>{space.selectedCoworkingOption}</h1>
                 <div className="spacer-medium"></div>
-                <div className="dprice">Starting From PKR {space.price} per month</div>
+                <div className="dprice">Starting From PKR {space.price}</div>
                 <div className="flex">
                   <div className="capacity">Capacity:</div>
                   <div className="cap">{space.capacity}</div>

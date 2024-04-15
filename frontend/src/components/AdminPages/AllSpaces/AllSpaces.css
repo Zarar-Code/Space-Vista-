@@ -2,3 +2,13 @@
     display: flex;
     flex-wrap: wrap;
 }
+.view-b{
+    border: 1px solid var(--lb-color);
+    padding: 1px 8px;
+    margin-top: 8px;
+    transition: all 0.4s;
+}
+.view-b:hover{
+    background-color: var(--lb-color);
+    color: white;
+}

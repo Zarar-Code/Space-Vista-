@@ -25,6 +25,6 @@ export const verifyJwt = asyncHandlder(async (req, res, next) => {
         next();
 
   } catch (error) {
-    throw new ApiError(400, error?.message || "Invalid cccess token")
+    throw new ApiError(400, error?.message || "Invalid access token")
   }
 });

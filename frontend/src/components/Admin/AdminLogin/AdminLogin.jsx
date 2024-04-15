@@ -23,7 +23,8 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await axios.post('/api/v1/admin/login', formData);
-        dispatch(setAdmin(response.data.admin));
+        dispatch(setAdmin(response.data.data));
+        // console.log(response.data)
         navigate('/AdminPanel'); // Redirect to home page for regular users
     } catch (error) {
       console.error('Login Error:', error);

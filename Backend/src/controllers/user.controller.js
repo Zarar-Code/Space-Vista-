@@ -162,7 +162,7 @@ const userLogin = asyncHandlder(async (req, res) => {
 });
 
 const userLogout = asyncHandlder(async (req, res) => {
-  User.findByIdAndUpdate(
+  await User.findByIdAndUpdate(
     req.user._id,
     {
       $set: {

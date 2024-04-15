@@ -8,7 +8,7 @@ const adminAuthSlice = createSlice({
   },
   reducers: {
     setAdmin(state, action) {
-      state.admin = action.payload;
+      state.admin = action.payload.admin;
       state.isAuthenticated = true; // Set isAuthenticated to true when user is logged in
       // state.accessToken = action.payload
       localStorage.setItem('isAuthenticated', 'true'); 

@@ -87,3 +87,8 @@
     font-size:18px;
     margin-bottom:0;
 }
+.center-f{
+  display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}

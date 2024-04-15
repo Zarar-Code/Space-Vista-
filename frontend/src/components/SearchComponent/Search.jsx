@@ -18,7 +18,7 @@ useEffect(() => {
 const fetchDataFromDatabase = async () => {
     try {
     const response = await axios.get('/api/v1/allSpaces');
-    console.log(response.data)
+    // console.log(response.data)
     dispatch(setData(response.data));
     } catch (error) {
     console.error('Error fetching data:', error);
@@ -86,7 +86,7 @@ return (
     
     <motion.div 
     initial={{x:-100}}
-    animate={{ x: 100 }}
+    animate={{ x: 0 }}
     transition={{ type: "spring", stiffness: 100 }}
     className='discover'>"Discover an array of dynamic spaces waiting to elevate your work experience"</motion.div>
 
